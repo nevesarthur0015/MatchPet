@@ -19,7 +19,7 @@ def homepage():
         if usuario and bcrypt.check_password_hash(usuario.senha,formlogin.senha.data):
             #Se as duas condições forem atendidas, então inicia a sessao com login_user(usuario)
             login_user(usuario)
-            return redirect (url_for('perfil', usuario= usuario.username))
+            return redirect (url_for('perfil', id_usuario= usuario.id))
     return render_template('homepage.html', form = formlogin)
 
 @app.route('/criarconta', methods=['GET','POST'])
@@ -37,16 +37,23 @@ def criarconta():
         #O login user faz o login quando cria a conta, sem precisar fazer o login logo em seguida
         login_user(usuario, remember=True)
         #Esse return redirect redireciona a página para a função 'perfil', com a variavel 'usuario' de tal função recebendo o dado username da classe Usuario
-        return redirect(url_for('perfil', usuario = usuario.username))
+        return redirect(url_for('perfil', id_usuario = usuario.id))
     return render_template('criarconta.html', form = formcriarconta)
 
 
 #Esse "<usuario>"" significa que é uma variável
 #Esse "@"login_required" significa que a função perfil só pode ser acessada se o login for realizado
-@app.route('/perfil/<usuario>')
+@app.route('/perfil/<id_usuario>')
 @login_required
-def perfil(usuario):
-    return render_template('perfil.html', usuario = usuario)
+def perfil(id_usuario): 
+    #Compara o ID da URL com o ID do usuário logado
+    if int(id_usuario) == int(current_user.id):
+        #o usuario tá vendo o perfil dele e envia as informações do próprio usuário logado
+        return render_template('perfil.html', usuario=current_user)
+    else:      
+        #O usuario logado tá vendo o perfil de outra pessoa e realiza uma consulta para ver qual usuario é dono daquele ID
+        usuario = Usuario.query.get(int(id_usuario))
+        return render_template('perfil.html', usuario = usuario)
 
 
 @app.route('/logout')
