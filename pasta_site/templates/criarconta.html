@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{%block titulo %}
+    Criar Conta
+{% endblock %}
+
+{% block body %}
+<body style="width:100%; height:100vh; display:flex; justify-content:center; align-items:center;align-content:center; background-color: #f0f0f0; font-family: Arial, sans-serif;
+">
+    <h1>Welcome to the Homepage</h1>
+
+<form method="POST">
+    <!--Esse 'form.csrf_token' serve para proteger o site contra ataques de falsificação de formulário-->
+    {{form.csrf_token}}
+
+    {{form.username.label()}}
+    {{form.username()}}
+
+    {{form.email.label()}}
+    {{form.email()}}
+
+    {{form.senha.label()}}
+    {{form.senha()}}
+
+    {{form.confirmacao_senha.label()}}
+    {{form.confirmacao_senha()}}
+
+    {{form.botao_confirmacao}}
+
+
+</form>
+
+
+</body>
+{% endblock %}

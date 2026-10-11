@@ -5,6 +5,7 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationE
 
 from pasta_site.models import Usuario
 
+#Esse E-mail entre parenteres é o label da variável email
 class FormLogin(FlaskForm):
     email = StringField('E-mail', validators=[ DataRequired(), Email() ])
     senha = PasswordField('Senha', validators=[DataRequired()])

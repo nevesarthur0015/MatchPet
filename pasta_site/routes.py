@@ -6,14 +6,14 @@ from flask_login import login_required
 
 from pasta_site.forms import FormLogin, FormCriarConta
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def homepage():
     formlogin = FormLogin()
     return render_template('homepage.html', form = formlogin)
 
-@app.route('/criarconta')
+@app.route('/criarconta', methods=['GET','POST'])
 def criarconta():
-    formcriarconta= FormCriarConta
+    formcriarconta= FormCriarConta()
     return render_template('criarconta.html', form = formcriarconta)
 
 
