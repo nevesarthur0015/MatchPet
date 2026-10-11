@@ -2,7 +2,7 @@ from flask import render_template,url_for,redirect
 
 from pasta_site import app, database, bcrypt
 
-from flask_login import login_required, login_user, logout_user
+from flask_login import login_required, login_user, logout_user, current_user
 
 from pasta_site.forms import FormLogin, FormCriarConta
 
@@ -11,6 +11,15 @@ from pasta_site.models import Usuario, Foto
 @app.route('/', methods=['GET','POST'])
 def homepage():
     formlogin = FormLogin()
+    #Esse formlogin.validate_on_submit() verifica se o formulário foi enviado via post e se atende às regras
+    if formlogin.validate_on_submit():
+        #Nesse query, busca no banco de dados o primeiro usuario com o e-mail digitado
+        usuario= Usuario.query.filter_by(email=formlogin.email.data).first()
+        #Esse "if usuario" é se tiver achado e esse outro que tem bcrypt compara a senha do usuario "usuario.senha" com o senha digitada "formlogin.senha.data"
+        if usuario and bcrypt.check_password_hash(usuario.senha,formlogin.senha.data):
+            #Se as duas condições forem atendidas, então inicia a sessao com login_user(usuario)
+            login_user(usuario)
+            return redirect (url_for('perfil', usuario= usuario.username))
     return render_template('homepage.html', form = formlogin)
 
 @app.route('/criarconta', methods=['GET','POST'])
@@ -38,3 +47,11 @@ def criarconta():
 @login_required
 def perfil(usuario):
     return render_template('perfil.html', usuario = usuario)
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('homepage'))
+
