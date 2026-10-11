@@ -4,9 +4,17 @@ from pasta_site import app
 
 from flask_login import login_required
 
+from pasta_site.forms import FormLogin, FormCriarConta
+
 @app.route('/')
 def homepage():
-    return render_template('homepage.html')
+    formlogin = FormLogin()
+    return render_template('homepage.html', form = formlogin)
+
+@app.route('/criarconta')
+def criarconta():
+    formcriarconta= FormCriarConta
+    return render_template('criarconta.html', form = formcriarconta)
 
 
 #Esse "<usuario>"" significa que é uma variável
