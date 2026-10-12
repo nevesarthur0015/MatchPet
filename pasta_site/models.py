@@ -5,6 +5,7 @@ from flask_login import UserMixin
 def load_usuario(id_usuario):
     return Usuario.query.get(int(id_usuario))
 
+#O "UserMixin" torna possível o "current_user"
 class Usuario(database.Model, UserMixin):
     id= database.Column(database.Integer, primary_key=True)
     username= database.Column(database.String, nullable=False)

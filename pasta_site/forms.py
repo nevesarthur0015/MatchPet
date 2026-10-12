@@ -1,6 +1,6 @@
 #Criar os formularios do site
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, FileField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 
 from pasta_site.models import Usuario
@@ -17,6 +17,12 @@ class FormCriarConta(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     confirmacao_senha = PasswordField('Confirmação de senha', validators=[DataRequired(),EqualTo('senha')])
     botao_confirmacao = SubmitField('Criar Conta')
+
+#Formulário de enviar foto
+class FormFoto(FlaskForm):
+    foto = FileField('Foto', validators=[DataRequired()])
+    botao_confirmacao= SubmitField('Enviar')
+
 
 
 #Serve para analisar se o email já está cadastrado

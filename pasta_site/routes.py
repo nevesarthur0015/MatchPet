@@ -4,9 +4,12 @@ from pasta_site import app, database, bcrypt
 
 from flask_login import login_required, login_user, logout_user, current_user
 
-from pasta_site.forms import FormLogin, FormCriarConta
+from pasta_site.forms import FormLogin, FormCriarConta, FormFoto
 
 from pasta_site.models import Usuario, Foto
+
+import os
+from werkzeug.utils import secure_filename
 
 @app.route('/', methods=['GET','POST'])
 def homepage():
@@ -43,17 +46,32 @@ def criarconta():
 
 #Esse "<usuario>"" significa que é uma variável
 #Esse "@"login_required" significa que a função perfil só pode ser acessada se o login for realizado
-@app.route('/perfil/<id_usuario>')
+@app.route('/perfil/<id_usuario>',methods=['GET','POST'])
 @login_required
 def perfil(id_usuario): 
     #Compara o ID da URL com o ID do usuário logado
     if int(id_usuario) == int(current_user.id):
         #o usuario tá vendo o perfil dele e envia as informações do próprio usuário logado
-        return render_template('perfil.html', usuario=current_user)
+        #O formulário de enviar foto só fica disponível se o perfil que estiver vendo for o perfil logado
+        Form_Foto= FormFoto()
+        if Form_Foto.validate_on_submit():
+            #Essa variável arquivo recebe o arquivo da foto
+            arquivo = Form_Foto.foto.data
+            #Esse nome seguro é a transformação do nome do arquivo da foto para um nome que não pode bugar o sistema
+            nome_seguro = secure_filename(arquivo.filename)
+            #Salvar o arquivo da foto na pasta fotos_post
+            caminho = os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config["UPLOAD_FOLDER"], nome_seguro)
+            arquivo.save(caminho)
+            #Registrar esse arquivo no banco de dados
+            foto = Foto(foto= nome_seguro, id_usuario = current_user.id)
+            database.session.add(foto)
+            database.session.commit()
+        return render_template('perfil.html', usuario=current_user, form= Form_Foto)
     else:      
         #O usuario logado tá vendo o perfil de outra pessoa e realiza uma consulta para ver qual usuario é dono daquele ID
         usuario = Usuario.query.get(int(id_usuario))
-        return render_template('perfil.html', usuario = usuario)
+        #Se o perfil que estiver sendo visualizado não for o perfil logado, não tem formulário
+        return render_template('perfil.html', usuario = usuario, form= None)
 
 
 @app.route('/logout')

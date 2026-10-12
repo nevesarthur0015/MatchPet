@@ -10,6 +10,8 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SECRET_KEY'] = '21072006'
+app.config['UPLOAD_FOLDER'] = 'static/fotos_posts'
+
 
 database= SQLAlchemy(app)
 bcrypt = Bcrypt(app)
