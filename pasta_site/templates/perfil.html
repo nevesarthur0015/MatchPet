@@ -7,6 +7,9 @@
 {% block body %}
     
 <body style="width:100%; height:100vh; display:flex; justify-content:center; align-items:center;align-content:center; background-color: #f0f0f0; font-family: Arial, sans-serif;">
+    <!--Adiciona o que está escrito no arquivo navbar.html-->
+    {% include 'navbar.html' %}
+    
     {%if form%}
     <!--Tem que ter enctype pois esse formulário recebe arquivo-->
     <form method="POST" enctype="multipart/form-data">
@@ -24,7 +27,7 @@
 
 
 {% for foto in usuario.fotos %}
-    <img src="{{url_for('static', filename='fotos_posts/{}'.format(foto.foto))}}">
+    <img style="width:30px; height:30px"src="{{url_for('static', filename='fotos_posts/{}'.format(foto.foto))}}">
 {% endfor %}
 
 </body>
