@@ -1,6 +1,7 @@
 from pasta_site import database, login_manager
 from flask_login import UserMixin
 
+
 @login_manager.user_loader
 def load_usuario(id_usuario):
     return Usuario.query.get(int(id_usuario))
@@ -17,4 +18,4 @@ class Foto(database.Model):
     id= database.Column(database.Integer, primary_key=True)
     foto= database.Column(database.String,default='default.png' )
     id_usuario= database.Column(database.Integer, database.ForeignKey('usuario.id'),nullable=False)
-
+    data_criacao= database.Column(database.DateTime, nullable=False, default=database.func.now())

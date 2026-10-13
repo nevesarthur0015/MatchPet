@@ -1,4 +1,5 @@
 <nav>
     <a href="{{url_for('feed')}}">Feed</a>
     <a href="{{url_for('perfil', id_usuario=current_user.id)}}">Perfil</a>
+    <a href="{{ url_for('logout')}}">Voltar para a homepage</a>
 </nav>
