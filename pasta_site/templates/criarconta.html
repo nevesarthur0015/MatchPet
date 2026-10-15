@@ -1,14 +1,12 @@
-{% extends "base.html" %}
-
-{%block titulo %}
-    Criar Conta
-{% endblock %}
-
-{% block body %}
-<body style="width:100%; height:100vh; display:flex; justify-content:center; align-items:center;align-content:center; background-color: #f0f0f0; font-family: Arial, sans-serif;
-">
-    <h1>Welcome to the Homepage</h1>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
 <form method="POST">
     <!--Esse 'form.csrf_token' serve para proteger o site contra ataques de falsificação de formulário-->
     {{form.csrf_token}}
@@ -26,11 +24,19 @@
     {{form.confirmacao_senha()}}
 
     {{form.botao_confirmacao}}
-
-
 </form>
+
 
 <a href="{{url_for('homepage')}}">Página de login</a>
 
 </body>
-{% endblock %}
+</html>
+
+
+
+
+
+
+
+
+

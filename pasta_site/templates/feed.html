@@ -1,16 +1,9 @@
-{% extends 'base.html' %}
 
-{% block titulo %}
-Feed
-{% endblock %}
 
-{% block body %}
-    {% include 'navbar.html' %}
-    <h1>Feed Principal</h1>
+
+
 
 {% for foto in fotos %}
     <a href="{{url_for('perfil', id_usuario=foto.id_usuario)}}"><img style="width:30px; height:30px"src="{{url_for('static', filename='fotos_posts/{}'.format(foto.foto))}}"></a>
 {% endfor %}
 
-
-{% endblock %}

@@ -1,30 +1,36 @@
-{% extends "base.html" %}
-
-{%block titulo %}
-    Homepage
-{% endblock %}
-
-{% block body %}
-<body style="width:100%; height:100vh; display:flex; justify-content:center; align-items:center;align-content:center; background-color: #f0f0f0; font-family: Arial, sans-serif;
-">
-    <h1>Welcome to the Homepage</h1>
-
-<form method="POST">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<body style="width:100%; height:100vh; background-color: azure; display:flex; flex-direction:column; justify-content: center; align-items: center;">
+   
+    
+     <img style="height:30%; width:40%" src="static/01-logo.png" alt="">
+<form style="width:50%; height:50vh; background-color:antiquewhite; border-radius: 30px; display:flex; flex-direction:column; justify-content:space-around; align-items: center;" method="POST">
     <!--Esse 'form.csrf_token' serve para proteger o site contra ataques de falsificação de formulário-->
     {{form.csrf_token}}
-
-    {{form.email.label()}}
-    {{form.email()}}
-
-    {{form.senha.label()}}
-    {{form.senha()}}
-
-    {{form.botao_confirmacao}}
-
-
+    <h2 class="titulo-login">Página de Login</h2>
+        <div class="form-login">
+    {{form.email.label(class="label_login")}}
+    {{form.email(class="input_login")}}
+        </div>
+    
+        <div class="form-login">
+    {{form.senha.label(class="label_login")}}
+    {{form.senha(class="input_login")}}
+        </div>
+    {{form.botao_confirmacao(class='botao_login')}}
 </form>
 
-<a href="{{url_for('criarconta')}}">Página de criar conta</a>
+<a class="criar_conta" href="{{url_for('criarconta')}}">Não tem uma conta? Crie uma clicando aqui</a>
 
 </body>
-{% endblock %}
+</html>
+
+
+
+
