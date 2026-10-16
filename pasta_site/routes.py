@@ -28,7 +28,7 @@ def homepage():
         if usuario and bcrypt.check_password_hash(usuario.senha,formlogin.senha.data):
             #Se as duas condições forem atendidas, então inicia a sessao com login_user(usuario)
             login_user(usuario)
-            return redirect (url_for('perfil', id_usuario= usuario.id, usuario=usuario))
+            return redirect (url_for('cachorro', id_usuario= usuario.id, usuario=usuario))
     return render_template('homepage.html', form = formlogin)
 
 @app.route('/criarconta', methods=['GET','POST'])
@@ -60,7 +60,7 @@ def criarconta():
 #Esse "@"login_required" significa que a função perfil só pode ser acessada se o login for realizado
 @app.route('/perfil/<id_usuario>',methods=['GET','POST'])
 @login_required
-def perfil(id_usuario): 
+def cachorro(id_usuario): 
     #Compara o ID da URL com o ID do usuário logado
     if int(id_usuario) == int(current_user.id):
         #o usuario tá vendo o perfil dele e envia as informações do próprio usuário logado
