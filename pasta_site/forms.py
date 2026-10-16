@@ -15,7 +15,7 @@ class FormCriarConta(FlaskForm):
     email = StringField('E-mail', validators=[DataRequired(), Email()])
     senha = PasswordField('Senha', validators=[DataRequired(), Length(6,20)])
     username = StringField('Username', validators=[DataRequired()])
-    confirmacao_senha = PasswordField('Confirmação de senha', validators=[DataRequired(),EqualTo('senha')])
+    confirmacao_senha = PasswordField('Confirmação de senha', validators=[DataRequired(),EqualTo('senha', message='As senhas não coincidem')])
     botao_confirmacao = SubmitField('Criar Conta')
 
 #Formulário de enviar foto
@@ -29,4 +29,4 @@ class FormFoto(FlaskForm):
     def validate_email(self, email):
         usuario = Usuario.query.filter_by(email=email.data).first()
         if usuario:
-            return ValidationError("E-mail já cadastrado, faça login para continuar")
+            raise ValidationError("E-mail já cadastrado, faça login para continuar")
