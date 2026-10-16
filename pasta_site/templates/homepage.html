@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +7,20 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
 </head>
 <body style="width:100%; height:100vh; background-color: azure; display:flex; flex-direction:column; justify-content: center; align-items: center;">
-   
+<div class="flash_login">
+{% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="{{ category }}">
+                        {{ message }}
+                    </p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}   
+</div>
     
      <img style="height:30%; width:40%" src="static/01-logo.png" alt="">
-<form style="width:50%; height:50vh; background-color:antiquewhite; border-radius: 30px; display:flex; flex-direction:column; justify-content:space-around; align-items: center;" method="POST">
+<form class="form_login" style="width:50%; height:50vh; background-color:antiquewhite; border-radius: 30px; display:flex; flex-direction:column; justify-content:space-around; align-items: center;" method="POST">
     <!--Esse 'form.csrf_token' serve para proteger o site contra ataques de falsificação de formulário-->
     {{form.csrf_token}}
     <h2 class="titulo-login">Página de Login</h2>
