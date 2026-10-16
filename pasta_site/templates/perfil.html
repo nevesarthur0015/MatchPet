@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
 </head>
-<body style="width:100%; height:100vh; display: flex; justify-content: center; align-items: center;">
-    <h1>Bem vindo(a), {{usuario.username}}</h1>
+<body style="width:100%">
+    <nav class="navbar_main">
+    <img style="width:20%" src="{{url_for('static', filename='01-logo.png')}}">
+
+    <ul style="display:flex;flex-direction: row; width: 30%;justify-content: space-around; align-items: center; background-color: aliceblue; height: 80%; border-radius: 1rem;">
+        <li><a  style="background-color: antiquewhite; border-radius: 1rem; padding:0.3rem" href='#'>Cachorros</a></li>
+        <li><a href='#'>Gatos</a></li>
+        <li><a href='#'>Outros</a></li>
+    </ul>
+
+        <ul style="display:flex;flex-direction: row; width: 20%;justify-content: space-around; align-items: center; height: 80%;">
+        <li><a href='#'>Adicionar animal</a></li>
+        <li><a href='#'>Deslogar</a></li>
+    </ul>
+
+    </nav>
 </body>
 </html>

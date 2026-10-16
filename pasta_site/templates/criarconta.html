@@ -48,6 +48,7 @@
     {{form.confirmacao_senha(class='input_criar_conta')}}
     {% if form.confirmacao_senha.errors %}
         <div class="erro_senha">
+        #Esse 'for erro' dispara a mensagem que está no forms.py quando o campo de senha e o campo de confirmação de senha não são iguais
         {% for erro in form.confirmacao_senha.errors %}
             <p style="color: red; font-size: 0.85rem; margin-top: 5px;">{{ erro }}</p>
         {% endfor %}

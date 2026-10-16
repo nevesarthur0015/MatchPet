@@ -140,6 +140,42 @@
   align-items: center;
 }
 
+/*Classes da página principal*/
+.navbar_main{
+  width:100%;
+  height:15vh;
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  color:black;
+}
+.navbar_main ul:nth-child(3) li a{
+  background-color: aliceblue;
+  padding:0.3rem;
+  border-radius: 1rem;
+  transition: 0.5s;
+}
+.navbar_main ul:nth-child(3) li a:hover{
+  background-color: black;
+  color:antiquewhite;
+}
+.navbar_main ul:nth-child(2) li{
+  padding:0.3rem;
+  border-radius: 1rem;
+  transition: 0.5s;
+}
+
+.navbar_main ul:nth-child(2) li:not(:first-child):hover{
+  background-color: antiquewhite;
+}
 
 
 
