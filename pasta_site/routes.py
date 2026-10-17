@@ -12,7 +12,7 @@ import os
 from werkzeug.utils import secure_filename
 
 @app.route('/', methods=['GET','POST'])
-def homepage():
+def telalogin():
     formlogin = FormLogin()
     #Esse formlogin.validate_on_submit() verifica se o formulário foi enviado via post e se atende às regras
     if formlogin.validate_on_submit():
@@ -56,34 +56,31 @@ def criarconta():
     return render_template('criarconta.html', form = formcriarconta)
 
 
-#Esse "<usuario>"" significa que é uma variável
+
 #Esse "@"login_required" significa que a função perfil só pode ser acessada se o login for realizado
-@app.route('/perfil/<id_usuario>',methods=['GET','POST'])
+@app.route('/cachorro',methods=['GET','POST'])
 @login_required
-def cachorro(id_usuario): 
-    #Compara o ID da URL com o ID do usuário logado
-    if int(id_usuario) == int(current_user.id):
-        #o usuario tá vendo o perfil dele e envia as informações do próprio usuário logado
-        #O formulário de enviar foto só fica disponível se o perfil que estiver vendo for o perfil logado
-        Form_Foto= FormFoto()
-        if Form_Foto.validate_on_submit():
-            #Essa variável arquivo recebe o arquivo da foto
-            arquivo = Form_Foto.foto.data
-            #Esse nome seguro é a transformação do nome do arquivo da foto para um nome que não pode bugar o sistema
-            nome_seguro = secure_filename(arquivo.filename)
-            #Salvar o arquivo da foto na pasta fotos_post
-            caminho = os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config["UPLOAD_FOLDER"], nome_seguro)
-            arquivo.save(caminho)
-            #Registrar esse arquivo no banco de dados
-            foto = Foto(foto= nome_seguro, id_usuario = current_user.id)
-            database.session.add(foto)
-            database.session.commit()
-        return render_template('perfil.html', usuario=current_user, form= Form_Foto)
-    else:      
-        #O usuario logado tá vendo o perfil de outra pessoa e realiza uma consulta para ver qual usuario é dono daquele ID
-        usuario = Usuario.query.get(int(id_usuario))
-        #Se o perfil que estiver sendo visualizado não for o perfil logado, não tem formulário
-        return render_template('perfil.html', usuario = usuario, form= None)
+def cachorro(): 
+    return render_template('cachorro.html')
+
+#Esse "@"login_required" significa que a função perfil só pode ser acessada se o login for realizado
+@app.route('/gato',methods=['GET','POST'])
+@login_required
+def gato(): 
+    return render_template('gato.html')
+
+#Esse "@"login_required" significa que a função perfil só pode ser acessada se o login for realizado
+@app.route('/outros',methods=['GET','POST'])
+@login_required
+def outros(): 
+    return render_template('outros.html')
+
+#Esse "@"login_required" significa que a função perfil só pode ser acessada se o login for realizado
+@app.route('/adicionar',methods=['GET','POST'])
+@login_required
+def adicionar(): 
+    return render_template('adicionar.html')
+
 
 
 @app.route('/feed')
@@ -96,5 +93,5 @@ def feed():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('homepage'))
+    return redirect(url_for('telalogin'))
 

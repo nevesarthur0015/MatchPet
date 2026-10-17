@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +7,14 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
 </head>
 <body style="width:100%; display: flex; flex-direction: column; align-items: center;">
-    <nav class="navbar_main">
-    <img style="width:20%" src="{{url_for('static', filename='01-logo.png')}}">
+    
+      {% include 'navbar.html' %}
 
-    <ul style="display:flex;flex-direction: row; width: 30%;justify-content: space-around; align-items: center; background-color: aliceblue; height: 80%; border-radius: 1rem;">
-        <li><a href="{{url_for('cachorro', id_usuario=current_user.id)}}">Cachorros</a></li>
-        <li><a href='#'>Gatos</a></li>
-        <li><a href='#'>Outros</a></li>
-    </ul>
-
-        <ul style="display:flex;flex-direction: row; width: 20%;justify-content: space-around; align-items: center; height: 80%;">
-        <li><a href='#'>Adicionar animal</a></li>
-        <li><a href='#'>Deslogar</a></li>
-    </ul>
-
-    </nav>
     <div class="titulo_main">
-    <h1>Página de cachorros</h1>
+    <h1>Página de outros animais</h1>
     </div>
     <section class="section_animal">
-        <h2>Filhotes (até 1 ano)</h2>
+        <h2>Coelhos</h2>
         <div class="div_cachorro_filhote">
             
             
@@ -134,7 +122,7 @@
 
 
     <section style="margin-top:10vh;" class="section_animal">
-        <h2>Adultos (de 1 até 7 anos)</h2>
+        <h2>Aves</h2>
         <div class="div_cachorro_filhote">
             
             
@@ -243,7 +231,7 @@
 
 
 <section style="margin-top:10vh;" class="section_animal">
-        <h2>Idosos (mais de 7 anos)</h2>
+        <h2>Roedores</h2>
         <div class="div_cachorro_filhote">
             
             
