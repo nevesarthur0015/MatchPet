@@ -18,8 +18,11 @@ class FormCriarConta(FlaskForm):
     confirmacao_senha = PasswordField('Confirmação de senha', validators=[DataRequired(),EqualTo('senha', message='As senhas não coincidem')])
     botao_confirmacao = SubmitField('Criar Conta')
 
-#Formulário de enviar foto
-class FormFoto(FlaskForm):
+#Formulário de adicionar o animal
+class FormAnimal(FlaskForm):
+    nome= StringField('Nome:', validators=[DataRequired()])
+    idade = StringField('Idade:', validators=[DataRequired()])
+    raca = StringField('Raça:', validators=[DataRequired()])
     foto = FileField('Foto', validators=[DataRequired()])
     botao_confirmacao= SubmitField('Enviar')
 

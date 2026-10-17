@@ -4,7 +4,7 @@ from pasta_site import app, database, bcrypt
 
 from flask_login import login_required, login_user, logout_user, current_user
 
-from pasta_site.forms import FormLogin, FormCriarConta, FormFoto
+from pasta_site.forms import FormLogin, FormCriarConta, FormAnimal
 
 from pasta_site.models import Usuario, Foto
 
@@ -29,7 +29,7 @@ def telalogin():
             #Se as duas condições forem atendidas, então inicia a sessao com login_user(usuario)
             login_user(usuario)
             return redirect (url_for('cachorro', id_usuario= usuario.id, usuario=usuario))
-    return render_template('homepage.html', form = formlogin)
+    return render_template('login.html', form = formlogin)
 
 @app.route('/criarconta', methods=['GET','POST'])
 def criarconta():
@@ -52,7 +52,7 @@ def criarconta():
             #O login user faz o login quando cria a conta, sem precisar fazer o login logo em seguida
             login_user(usuario, remember=True)
             #Esse return redirect redireciona a página para a função 'perfil', com a variavel 'usuario' de tal função recebendo o dado username da classe Usuario
-            return redirect(url_for('homepage'))
+            return redirect(url_for('telalogin'))
     return render_template('criarconta.html', form = formcriarconta)
 
 
@@ -76,18 +76,11 @@ def outros():
     return render_template('outros.html')
 
 #Esse "@"login_required" significa que a função perfil só pode ser acessada se o login for realizado
-@app.route('/adicionar',methods=['GET','POST'])
+@app.route('/categoria',methods=['GET','POST'])
 @login_required
-def adicionar(): 
-    return render_template('adicionar.html')
+def categoria(): 
+    return render_template('categoria.html')
 
-
-
-@app.route('/feed')
-@login_required
-def feed():
-    fotos= Foto.query.order_by(Foto.data_criacao).all()
-    return render_template('feed.html', fotos= fotos)
 
 @app.route('/logout')
 @login_required
@@ -95,3 +88,10 @@ def logout():
     logout_user()
     return redirect(url_for('telalogin'))
 
+@app.route('/adicionar', methods=['GET','POST'])
+@login_required
+def adicionar():
+    form_animal= FormAnimal()
+    if form_animal.validate_on_submit():
+        return redirect (url_for('cachorro'))
+    return render_template('adicionar1.html', form=form_animal)

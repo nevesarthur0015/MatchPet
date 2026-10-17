@@ -1,73 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
 </head>
-<body class="body_criar_conta">
-    <div class="criar_conta_1">
+<body style="width:100%; height:100vh; background-color: azure; display:flex; flex-direction:column; justify-content: center; align-items: center;">
 
-<div class="flash_cadastro">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <p class="{{ category }}">
-                        {{ message }}
-                    </p>
-                {% endfor %}
-            {% endif %}
-        {% endwith %} 
-
-
-
-</div>
-
-        <form class="form_criar_conta" method="POST">
-    <!--Esse 'form.csrf_token' serve para proteger o site contra ataques de falsificação de formulário-->
-    {{form.csrf_token}}
-    <h2 style="font-size: 1.5rem;">Página de Cadastro</h2>
-    <div class="criar_conta_div_form">
-    {{form.username.label(class='label_criar_conta')}}
-    {{form.username(class='input_criar_conta')}}
-    </div>
     
-    <div class="criar_conta_div_form">
-    {{form.email.label(class='label_criar_conta')}}
-    {{form.email(class='input_criar_conta')}}
-    </div>
+     <img style="height:30%; width:40%" src="static/01-logo.png" alt="">
+<div class="categoria_div">
 
-    <div class="criar_conta_div_form">
-    {{form.senha.label(class='label_criar_conta')}}
-    {{form.senha(class='input_criar_conta')}}
-    </div>
-
-    <div class="criar_conta_div_form">
-    {{form.confirmacao_senha.label(class='label_criar_conta')}}
-    {{form.confirmacao_senha(class='input_criar_conta')}}
-    {% if form.confirmacao_senha.errors %}
-        <div class="erro_senha">
-        #Esse 'for erro' dispara a mensagem que está no forms.py quando o campo de senha e o campo de confirmação de senha não são iguais
-        {% for erro in form.confirmacao_senha.errors %}
-            <p style="color: red; font-size: 0.85rem; margin-top: 5px;">{{ erro }}</p>
-        {% endfor %}
-        </div>
-        {% endif %}
-    </div>
-
-
-    {{form.botao_confirmacao(class='botao_login')}}
-</form>
-
-
-<a style="margin:0;"  class='criar_conta' href="{{url_for('homepage')}}">Já tem uma conta? Faça login clicando aqui</a>
-
+    <h1 style="font-family: Arial, Helvetica, sans-serif; font-size: 1.3rem;">Selecione a categoria de animal que você deseja adicionar</h1>
+<ul class="categoria_lista">
+    <li><a class="adicionar_select" href="{{url_for('adicionar')}}">Cachorro</a></li>
+    <li><a class="adicionar_select" href="{{url_for('adicionar')}}">Gato</a></li>
+    <li><a class="adicionar_select" href="{{url_for('adicionar')}}">Outros</a></li>
+</ul>
 </div>
 
-<div class="criar_conta_2">
-    <img src="{{url_for('static', filename='01-logo.png')}}" alt="">
-</div>
+
+<a class="criar_conta" href="{{url_for('cachorro')}}">Voltar para a homepage</a>
 
 </body>
 </html>

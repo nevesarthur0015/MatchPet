@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<body class="body_criar_conta">
+    <div class="criar_conta_1">
+
+
+        <form class="form_criar_conta" method="POST">
+    <!--Esse 'form.csrf_token' serve para proteger o site contra ataques de falsificação de formulário-->
+    {{form.csrf_token}}
+    <h2 style="font-size: 1.5rem;">Página de adicionar animal</h2>
+    <div class="criar_conta_div_form">
+    {{form.nome.label(class='label_criar_conta')}}
+    {{form.nome(class='input_criar_conta')}}
+    </div>
+    
+    <div class="criar_conta_div_form">
+    {{form.idade.label(class='label_criar_conta')}}
+    {{form.idade(class='input_criar_conta')}}
+    </div>
+
+    <div class="criar_conta_div_form">
+    {{form.raca.label(class='label_criar_conta')}}
+    {{form.raca(class='input_criar_conta')}}
+    </div>
+
+    <div class="criar_conta_div_form">
+    {{form.foto.label(class='label_criar_conta')}}
+    {{form.foto(class='input_criar_conta')}}
+   
+    </div>
+
+
+    {{form.botao_confirmacao(class='botao_login')}}
+</form>
+
+
+<a style="margin-top:5vh;"  class='criar_conta' href="{{url_for('cachorro')}}">Voltar para a homepage</a>
+
+</div>
+
+<div class="criar_conta_2">
+    <img src="{{ url_for('static', filename='01-logo.png') }}" alt="Logo">
+</div>
+
+</body>
+</html>
