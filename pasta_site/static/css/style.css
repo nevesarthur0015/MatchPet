@@ -187,6 +187,9 @@ a{
   background-color: antiquewhite;
   border-radius: 1rem;
 }
+.section_animal:last-child{
+  margin-bottom: 10vh;
+}
 .section_animal h2{
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.5rem;
@@ -225,6 +228,18 @@ a{
   width: 50%;
   text-align: center;
 }
+
+.detalhes_animal a{
+  background-color: aliceblue;
+  padding:0.2rem;
+  border-radius:1rem;
+  transition: 0.5s;
+}
+.detalhes_animal a:hover{
+  background-color: black;
+  color:antiquewhite
+}
+
 .titulo_main{
   width: 100%;
   background-color: aliceblue;
@@ -272,6 +287,113 @@ a{
   width:70%; 
   align-items: center;
 }
+
+.pag_animal{
+  background-color: aliceblue;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pag_animal1{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.pag_animal1_1{
+  width:50%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pag_animal1_1 img{
+  width:80%;
+  height: 80%;
+  border-radius: 1rem;
+}
+.pag_animal1_2{
+  width:50%;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pag_animal1_2 table{
+  width: 80%;
+  height: 80%;
+  text-align: center;
+}
+
+.pag_animal2{
+  background-color: antiquewhite;
+  width: 70%;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  padding: 1rem;
+  gap:1rem;
+}
+.pag_animal2 h2{
+  background-color: aliceblue;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  margin-top:1rem
+}
+.pag_animal2 p{
+  height: 90%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  width: 90%;
+  text-align: justify;
+}
+.pag_animal3{
+  width:90%;
+  height:50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: antiquewhite;
+  border-radius: 1rem;
+  margin:10vh 0;
+}
+.pag_animal3 h2{
+  height: 10%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  background-color: aliceblue;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+.pag_animal3_1{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  height: 90%;
+  width: 100%;
+  overflow-x: auto;
+}
+.pag_animal3_1 img{
+  max-width: 500px;
+  margin-left: 1rem;
+  border-radius: 1rem;
+}
+
+
+.form_adicionar{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 85%;
+  width: 80%;
+  background-color: antiquewhite;
+  border-radius: 1rem;
+  }
 
 
 

@@ -75,12 +75,11 @@ def gato():
 def outros(): 
     return render_template('outros.html')
 
-#Esse "@"login_required" significa que a função perfil só pode ser acessada se o login for realizado
+#Esse "@"login_required" significa que a função categoria só pode ser acessada se o login for realizado
 @app.route('/categoria',methods=['GET','POST'])
 @login_required
 def categoria(): 
     return render_template('categoria.html')
-
 
 @app.route('/logout')
 @login_required
@@ -95,3 +94,9 @@ def adicionar():
     if form_animal.validate_on_submit():
         return redirect (url_for('cachorro'))
     return render_template('adicionar1.html', form=form_animal)
+
+@app.route('/detalhes')
+@login_required
+def detalhes():
+    return render_template('detalhes.html')
+

@@ -10,7 +10,7 @@
     <div class="criar_conta_1">
 
 
-        <form class="form_criar_conta" method="POST">
+        <form class="form_adicionar" method="POST">
     <!--Esse 'form.csrf_token' serve para proteger o site contra ataques de falsificação de formulário-->
     {{form.csrf_token}}
     <h2 style="font-size: 1.5rem;">Página de adicionar animal</h2>
@@ -24,15 +24,29 @@
     {{form.idade(class='input_criar_conta')}}
     </div>
 
+       <div class="criar_conta_div_form">
+    {{form.sexo.label(class='label_criar_conta')}}
+    {{form.sexo(class='input_criar_conta')}}
+    </div>
+
     <div class="criar_conta_div_form">
     {{form.raca.label(class='label_criar_conta')}}
     {{form.raca(class='input_criar_conta')}}
     </div>
 
     <div class="criar_conta_div_form">
-    {{form.foto.label(class='label_criar_conta')}}
-    {{form.foto(class='input_criar_conta')}}
-   
+    {{form.foto_principal.label(class='label_criar_conta')}}
+    {{form.foto_principal(class='input_criar_conta')}}
+    </div>
+
+    <div class="criar_conta_div_form">
+    {{form.fotos_extras.label(class='label_criar_conta')}}
+    {{form.fotos_extras(class='input_criar_conta')}}
+    </div>
+
+        <div class="criar_conta_div_form">
+    {{form.mensagem.label(class='label_criar_conta')}}
+    {{form.mensagem(class='input_criar_conta')}}
     </div>
 
 

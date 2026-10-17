@@ -22,8 +22,11 @@ class FormCriarConta(FlaskForm):
 class FormAnimal(FlaskForm):
     nome= StringField('Nome:', validators=[DataRequired()])
     idade = StringField('Idade:', validators=[DataRequired()])
-    raca = StringField('Raça:', validators=[DataRequired()])
-    foto = FileField('Foto', validators=[DataRequired()])
+    raca = StringField('Raça / Tipo de animal:', validators=[DataRequired()])
+    foto_principal = FileField('Foto Principal:', validators=[DataRequired()])
+    fotos_extras = FileField('Fotos extras:')
+    mensagem = StringField('Mensagem do doador:' , default='Procuro um novo lar para este animal')
+    sexo = StringField('Sexo:' , validators=[DataRequired()])
     botao_confirmacao= SubmitField('Enviar')
 
 
