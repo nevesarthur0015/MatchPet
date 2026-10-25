@@ -46,6 +46,7 @@
   border-radius: 1rem;
   padding:0.5rem;
   transition: 0.5s;
+  
 }
 
 .criar_conta:hover{
@@ -55,6 +56,15 @@
 .titulo-login{
   font-size: 1.5rem;
 }
+.nao_login{
+  width: 45%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
 
 
 
@@ -147,9 +157,21 @@
   background-color: antiquewhite;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content:space-around;
   align-items: center;
 }
+.navbar_main h2{
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
 li{
   list-style: none;
 }
@@ -245,16 +267,17 @@ a{
   background-color: aliceblue;
   height: 15vh;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content:center;
   align-items: center;
-
+  margin-bottom: 1rem;
 }
 .titulo_main h1{
   font-family: Arial, Helvetica, sans-serif;
   font-size: 2rem;
   font-weight: bold;
 }
+
 
 .adicionar_select{
   background-color: aliceblue;
@@ -394,6 +417,52 @@ a{
   background-color: antiquewhite;
   border-radius: 1rem;
   }
+
+.sobre_div{
+  width: 60%;
+  height: 40vh;
+  background-color: antiquewhite;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.sobre_div h1{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.8rem;
+  background-color: aliceblue;
+  padding: 0.3rem;
+  border-radius: 1rem;
+}
+.sobre_div p{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.25rem;
+  text-align: justify;
+  width: 80%;
+}
+
+.email{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: antiquewhite;
+  width: 30%;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  transition: 0.5s;
+}
+.email p{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+}
+.email:hover{
+  background-color: black;
+  color:aliceblue
+}
 
 
 

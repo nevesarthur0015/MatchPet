@@ -8,12 +8,12 @@
 </head>
 <body class="pag_animal">
     
-{% include 'navbar.html' %}
+{% include 'navbars/navbar.html' %}
 
 <section class="pag_animal1">
      
     <div class="pag_animal1_1">
-        <img src="{{url_for('static' , filename='cachorro1.jpeg')}}">
+        <img src="{{url_for('static' , filename='imagens/cachorro1.jpeg')}}">
     </div>
 
 
@@ -47,6 +47,11 @@
     
 </section>
     
+<div class="email">
+    <p>Enviar e-mail para doador</p>
+</div>
+
+
     <div class="pag_animal2">
         <h2>Mensagem do doador</h2>
         <p>Procuro um lar cheio de amor para o Toby, esse filhote adorável de Golden Retriever de apenas três meses e meio que aparece na foto com sua coleirinha azul no jardim. Ele é uma criatura extremamente doce, brincalhona e curiosa, que adora explorar a grama, correr atrás de borboletas e ficar bem pertinho da gente o tempo todo. O Léo já tomou a primeira dose da vacina polivalente, está devidamente vermifugado e microchipado, precisando apenas dar continuidade ao esquema de vacinação e ser castrado quando atingir a idade adequada de seis meses. Por conta de uma mudança repentina de país a trabalho, infelizmente não terei como mantê-lo comigo, e meu único objetivo é garantir que ele vá para uma família responsável, com tempo, espaço e paciência para acompanhar seu crescimento e treinamento com muito carinho. Ele será entregue com sua carteirinha de vacinação em dia, microchip em seu nome, coleira, mantinha e um saco da ração que já está acostumado a comer. Se você tem o espaço necessário e deseja abrir o coração para esse menino dourado, entre em contato por mensagem privada para conversarmos e garantirmos que este seja o lar definitivo e feliz que ele tanto merece.</p>
@@ -55,11 +60,11 @@
 <section class="pag_animal3">
     <h2>Fotos extras</h2>
     <div class="pag_animal3_1">
-        <img src="{{url_for('static' , filename='cachorro1_1.jpeg')}}">
-        <img src="{{url_for('static' , filename='cachorro1_2.jpeg')}}">
-        <img src="{{url_for('static' , filename='cachorro1_3.jpeg')}}">
+        <img src="{{url_for('static' , filename='imagens/cachorro1_1.jpeg')}}">
+        <img src="{{url_for('static' , filename='imagens/cachorro1_2.jpeg')}}">
+        <img src="{{url_for('static' , filename='imagens/cachorro1_3.jpeg')}}">
 
-        <img src="{{url_for('static' , filename='cachorro1_3.jpeg')}}">
+        <img src="{{url_for('static' , filename='imagens/cachorro1_3.jpeg')}}">
 
     </div>
 </section>

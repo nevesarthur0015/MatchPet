@@ -57,23 +57,35 @@ def criarconta():
 
 
 
+@app.route('/cachorro_visitante')
+def cachorro_visitante():
+    return render_template('user_visitante/cachorro_visitante.html')
+
+@app.route('/gato_visitante')
+def gato_visitante():
+    return render_template('user_visitante/gato_visitante.html')
+
+@app.route('/outros_visitante')
+def outros_visitante():
+    return render_template('user_visitante/outros_visitante.html')
+
 #Esse "@"login_required" significa que a função perfil só pode ser acessada se o login for realizado
 @app.route('/cachorro',methods=['GET','POST'])
 @login_required
 def cachorro(): 
-    return render_template('cachorro.html')
+    return render_template('user_logado/cachorro.html')
 
 #Esse "@"login_required" significa que a função perfil só pode ser acessada se o login for realizado
 @app.route('/gato',methods=['GET','POST'])
 @login_required
 def gato(): 
-    return render_template('gato.html')
+    return render_template('user_logado/gato.html')
 
 #Esse "@"login_required" significa que a função perfil só pode ser acessada se o login for realizado
 @app.route('/outros',methods=['GET','POST'])
 @login_required
 def outros(): 
-    return render_template('outros.html')
+    return render_template('user_logado/outros.html')
 
 #Esse "@"login_required" significa que a função categoria só pode ser acessada se o login for realizado
 @app.route('/categoria',methods=['GET','POST'])
@@ -99,4 +111,8 @@ def adicionar():
 @login_required
 def detalhes():
     return render_template('detalhes.html')
+
+@app.route('/sobre')
+def sobre():
+    return render_template('sobre.html')
 

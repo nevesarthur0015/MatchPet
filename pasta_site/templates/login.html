@@ -19,7 +19,7 @@
         {% endwith %}   
 </div>
     
-     <img style="height:30%; width:40%" src="static/01-logo.png" alt="">
+     <img style="height:30%; width:40%" src="static/imagens/01-logo.png" alt="Logo MatchPet">
 <form class="form_login" style="width:50%; height:50vh; background-color:antiquewhite; border-radius: 30px; display:flex; flex-direction:column; justify-content:space-around; align-items: center;" method="POST">
     <!--Esse 'form.csrf_token' serve para proteger o site contra ataques de falsificação de formulário-->
     {{form.csrf_token}}
@@ -33,10 +33,21 @@
     {{form.senha.label(class="label_login")}}
     {{form.senha(class="input_login")}}
         </div>
-    {{form.botao_confirmacao(class='botao_login')}}
-</form>
+    
 
-<a class="criar_conta" href="{{url_for('criarconta')}}">Não tem uma conta? Crie uma clicando aqui</a>
+        {{form.botao_confirmacao(class='botao_login')}}
+
+
+    </form>
+
+
+<div class="nao_login">
+<a class="criar_conta" href="{{url_for('criarconta')}}">Criar conta</a>
+<a class="criar_conta" style="margin-top: 1rem;" href="{{url_for('sobre')}}">Sobre nós</a>
+<a class="criar_conta" href="{{url_for('cachorro_visitante')}}">Entrar como visitante</a>
+</div>
+
+
 
 </body>
 </html>
