@@ -14,7 +14,7 @@ app.config['UPLOAD_FOLDER'] = 'static/fotos_posts'
 
 
 
-#Não salva em cache as rotas que tem @login_required, por isso não é possível voltar para um apagina protegida apertando na seta de voltar após realizar logout
+#Não salva em cache as rotas que tem @login_required, por isso não é possível voltar para uma página protegida apertando na seta de voltar após realizar logout
 @app.after_request
 def add_header(response):
     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
