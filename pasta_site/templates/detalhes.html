@@ -47,9 +47,17 @@
     
 </section>
     
-<div class="email">
-    <p>Enviar e-mail para doador</p>
-</div>
+<button class="email" onclick="document.getElementById('login_popup').showModal()">Enviar e-mail para doador</button>
+
+{% if not current_user.is_authenticated %}
+    <dialog id="login_popup">
+        <h2>Para enviar mensagens, é necessário <a href="{{ url_for('telalogin')}}">realizar login</a>.</h2>
+
+        <button onclick="document.getElementById('login_popup').close()">Fechar</button>
+
+    </dialog>
+
+{% endif%}
 
 
     <div class="pag_animal2">
