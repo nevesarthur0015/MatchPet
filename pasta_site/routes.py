@@ -16,18 +16,39 @@ import uuid
 
 import csv
 
+from pasta_site.utils import ler_csv
+#função pra ler csv passando o arquivo como parâmetro
+
 
 @app.route('/')
 def homepage_cachorro():
-    return render_template('homepages/homepage_cachorro.html')
+    dados_animais = ler_csv("data/pets.csv")
+    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "cachorro"]
+    # Percorre a lista de animais e verifica o tipo
+    # de cada um, adicionando à nova lista apenas os cachorros.
+     
+    return render_template('homepages/homepage_cachorro.html',dados_animais = dados_animais) 
+    #Agora so adicionar o for no html 
 
 @app.route('/gato')
 def homepage_gato(): 
-    return render_template('homepages/homepage_gato.html')
+    dados_animais = ler_csv("data/pets.csv")
+    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "gato"]
+    # Percorre a lista de animais e verifica o tipo
+    # de cada um, adicionando à nova lista apenas os gatos.
+         
+    return render_template('homepages/homepage_gato.html',dados_animais = dados_animais) 
+    #Agora so adicionar o for no html
 
 @app.route('/outros')
 def homepage_outros(): 
-    return render_template('homepages/homepage_outros.html')
+    dados_animais = ler_csv("data/pets.csv")
+    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "outros"]
+    # Percorre a lista de animais e verifica o tipo
+    # de cada um, adicionando à nova lista apenas os ""outros"".
+             
+    return render_template('homepages/homepage_outros.html',dados_animais = dados_animais) 
+    #Agora so adicionar o for no html
 
 @app.route('/telalogin', methods=['GET','POST'])
 def telalogin():
