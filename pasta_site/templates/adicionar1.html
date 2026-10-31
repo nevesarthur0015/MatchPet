@@ -13,6 +13,9 @@
         <form class="form_adicionar" method="POST">
     <!--Esse 'form.csrf_token' serve para proteger o site contra ataques de falsificação de formulário-->
     {{form.csrf_token}}
+    {{form.tipo}}
+    <!--O form tipo adicionou o campo oculto no form mandando o tipo do animal [gato/cachorro/outros]-->
+    
     <h2 style="font-size: 1.5rem;">Página de adicionar animal</h2>
     <div class="criar_conta_div_form">
     {{form.nome.label(class='label_criar_conta')}}

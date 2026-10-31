@@ -1,6 +1,6 @@
 import os
 
-from flask import render_template,url_for,redirect,flash
+from flask import render_template,url_for,redirect,flash,request
 
 from pasta_site import app, database, bcrypt
 
@@ -12,18 +12,43 @@ from pasta_site.models import Usuario, Foto
 
 from werkzeug.utils import secure_filename
 
+import uuid
+
+import csv
+
+from pasta_site.utils import ler_csv
+#função pra ler csv passando o arquivo como parâmetro
+
 
 @app.route('/')
 def homepage_cachorro():
-    return render_template('homepages/homepage_cachorro.html')
+    dados_animais = ler_csv("data/pets.csv")
+    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "cachorro"]
+    # Percorre a lista de animais e verifica o tipo
+    # de cada um, adicionando à nova lista apenas os cachorros.
+     
+    return render_template('homepages/homepage_cachorro.html',dados_animais = dados_animais) 
+    #Agora so adicionar o for no html 
 
 @app.route('/gato')
 def homepage_gato(): 
-    return render_template('homepages/homepage_gato.html')
+    dados_animais = ler_csv("data/pets.csv")
+    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "gato"]
+    # Percorre a lista de animais e verifica o tipo
+    # de cada um, adicionando à nova lista apenas os gatos.
+         
+    return render_template('homepages/homepage_gato.html',dados_animais = dados_animais) 
+    #Agora so adicionar o for no html
 
 @app.route('/outros')
 def homepage_outros(): 
-    return render_template('homepages/homepage_outros.html')
+    dados_animais = ler_csv("data/pets.csv")
+    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "outros"]
+    # Percorre a lista de animais e verifica o tipo
+    # de cada um, adicionando à nova lista apenas os ""outros"".
+             
+    return render_template('homepages/homepage_outros.html',dados_animais = dados_animais) 
+    #Agora so adicionar o for no html
 
 @app.route('/telalogin', methods=['GET','POST'])
 def telalogin():
@@ -95,8 +120,37 @@ def logout():
 @login_required
 def adicionar():
     form_animal= FormAnimal()
+    if request.method == "GET":
+               form_animal.tipo.data = request.args.get("tipo")
+    # Recupera o parâmetro da URL (GET) e preenche o campo oculto do formulário.           
     if form_animal.validate_on_submit():
-        return redirect (url_for('homepage_cachorro'))
+       
+       #Se o form passar na validação ele puxa os dados do form pra mandar pro CSV
+       nome_pet = form_animal.nome.data
+       idade_pet = form_animal.idade.data
+       sexo_pet = form_animal.sexo.data
+       raca_pet =form_animal.raca.data
+       mensagem_pet =form_animal.mensagem.data
+       pet_id =str(uuid.uuid4())
+       #Usa o UUID que gera um ID único para cada pet 
+       user_id = current_user.id
+       tipo = form_animal.tipo.data 
+       tipos_validos = ["cachorro","gato","outros"] 
+
+       if tipo not in tipos_validos:
+           flash ("categoria de animal inválida","danger" )
+           return redirect(url_for("homepage_cachorro"))
+       #Validação: se o usuário informar um tipo inválido pela URL ou alterar o campo oculto pelo DevTools,
+       #O sistema bloqueia o cadastro, exibe uma mensagem de erro e redireciona o usuário para a página inicial.
+       
+
+       with open("data/pets.csv","a",newline = "",encoding="utf-8") as arquivo:
+           escritor = csv.writer(arquivo)
+           escritor.writerow([nome_pet,idade_pet,sexo_pet,raca_pet,mensagem_pet,pet_id,user_id,tipo]) 
+           # abre o arquivo CSV, e grava os dados enviados no form (Menos imagem por enquanto)
+
+
+       return redirect (url_for('homepage_cachorro'))
     return render_template('adicionar1.html', form=form_animal)
 
 @app.route('/detalhes')
