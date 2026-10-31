@@ -466,3 +466,22 @@ a{
 
 
 
+dialog {
+    border: none;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    max-width: 400px;
+    margin: auto;
+}
+
+dialog a {
+  text-decoration: underline;
+  color: blue;
+}
+
+/* Fundo escurecido atrás do popup (backdrop) */
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
