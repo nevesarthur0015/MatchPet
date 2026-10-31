@@ -1,6 +1,6 @@
 #Criar os formularios do site
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, FileField
+from wtforms import StringField, PasswordField, SubmitField, FileField, HiddenField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 
 from pasta_site.models import Usuario
@@ -28,6 +28,9 @@ class FormAnimal(FlaskForm):
     mensagem = StringField('Mensagem do doador:' , default='Procuro um novo lar para este animal')
     sexo = StringField('Sexo:' , validators=[DataRequired()])
     botao_confirmacao= SubmitField('Enviar')
+    tipo = HiddenField()
+# Campo oculto que permite transportar o tipo do animal recebido pela URL (GET)
+# durante o envio do formulário (POST).
 
 
 
