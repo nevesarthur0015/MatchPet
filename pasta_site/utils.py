@@ -11,3 +11,7 @@ def ler_csv (csv_file:str)->list:
         return animais
     except FileNotFoundError:
         return []
+    
+
+# Cria um diretório dentro de "imagens/", cujo nome é o id de um pet, ao adicioná-lo para doação. Contém as imagens do pet.
+def upload_img(pet_id)

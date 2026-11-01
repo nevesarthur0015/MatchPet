@@ -130,6 +130,8 @@ def adicionar():
        idade_pet = form_animal.idade.data
        sexo_pet = form_animal.sexo.data
        raca_pet =form_animal.raca.data
+       foto_principal_pet = form_animal.foto_principal.data
+       foto_extra_pet = form_animal.fotos_extras.data
        mensagem_pet =form_animal.mensagem.data
        pet_id =str(uuid.uuid4())
        #Usa o UUID que gera um ID único para cada pet 
@@ -146,7 +148,7 @@ def adicionar():
 
        with open("data/pets.csv","a",newline = "",encoding="utf-8") as arquivo:
            escritor = csv.writer(arquivo)
-           escritor.writerow([nome_pet,idade_pet,sexo_pet,raca_pet,mensagem_pet,pet_id,user_id,tipo]) 
+           escritor.writerow([nome_pet,idade_pet,sexo_pet,raca_pet,mensagem_pet,pet_id,user_id,tipo, foto_principal_pet, foto_extra_pet]) 
            # abre o arquivo CSV, e grava os dados enviados no form (Menos imagem por enquanto)
 
 
