@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-</head>
-<body class="body_criar_conta">
+{% extends 'base.html' %}
+
+{% block title %}Cadastrar{% endblock %}
+
+
+
+{% block content %}
+
+    <div class="body_criar_conta">
     <div class="criar_conta_1">
 
 <div class="flash_cadastro">
@@ -69,8 +69,11 @@
     <img src="{{url_for('static', filename='imagens/01-logo.png')}}" alt="Logo MatchPet">
 </div>
 
-</body>
-</html>
+</div>
+
+{% endblock %}
+
+
 
 
 

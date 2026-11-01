@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-</head>
-<body style="width:100%; height:100vh; background-color: azure; display:flex; flex-direction:column; justify-content: center; align-items: center;">
+{% extends 'base.html' %}
+
+{% block titulo %}Login{% endblock %}
+
+{% block content %}
+
 <div class="flash_login">
 {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -42,15 +39,14 @@
 
 
 <div class="nao_login">
-<a class="criar_conta" href="{{url_for('criarconta')}}">Criar conta</a>
-<a class="criar_conta" style="margin-top: 1rem;" href="{{url_for('sobre')}}">Sobre nós</a>
-<a class="criar_conta" href="{{url_for('cachorro_visitante')}}">Entrar como visitante</a>
+<a class="nao_login_botao" href="{{url_for('criarconta')}}">Criar conta</a>
+<a class="nao_login_botao" href="{{url_for('cachorro_visitante')}}">Entrar como visitante</a>
+<a class="nao_login_botao" style="margin-top: 1rem; margin-bottom:1rem" href="{{url_for('sobre')}}">Sobre nós</a>
 </div>
 
+{% endblock %}
 
 
-</body>
-</html>
 
 
 

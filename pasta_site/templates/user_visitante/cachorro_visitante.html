@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cachorro</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-</head>
-<body style="width:100%; display: flex; flex-direction: column; align-items: center;">
-    
+{% extends 'base.html' %}
+
+{% block title %}Cachorro{% endblock %}
+ 
+{% block content %}    
+
     {% include 'navbars/navbar_visitante.html' %}
 
     <div class="titulo_main">
@@ -22,18 +18,8 @@
                 <img src="{{url_for('static', filename='imagens/cachorro1.jpeg')}}">
                 <table border="1rem">
                     <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
                     </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Toby</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Golden Retriever</td>
-                    </tr>
-
-
                 </table>
             </div>
 
@@ -42,18 +28,8 @@
                 <img src="{{url_for('static', filename='imagens/cachorro1.jpeg')}}">
                 <table border="1rem">
                     <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
                     </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Toby</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Golden Retriever</td>
-                    </tr>
-
-
                 </table>
             </div>
 
@@ -61,18 +37,8 @@
                 <img src="{{url_for('static', filename='imagens/cachorro1.jpeg')}}">
                 <table border="1rem">
                     <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
                     </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Toby</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Golden Retriever</td>
-                    </tr>
-
-
                 </table>
             </div>
 
@@ -80,22 +46,38 @@
                 <img src="{{url_for('static', filename='imagens/cachorro1.jpeg')}}">
                 <table border="1rem">
                     <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
                     </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Toby</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Golden Retriever</td>
-                    </tr>
-
-
                 </table>
             </div>
 
 
+<div class="animal">
+                <img src="{{url_for('static', filename='imagens/cachorro1.jpeg')}}">
+                <table border="1rem">
+                    <tr>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                    </tr>
+                </table>
+            </div>
+
+<div class="animal">
+                <img src="{{url_for('static', filename='imagens/cachorro1.jpeg')}}">
+                <table border="1rem">
+                    <tr>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                    </tr>
+                </table>
+            </div>
+
+<div class="animal">
+                <img src="{{url_for('static', filename='imagens/cachorro1.jpeg')}}">
+                <table border="1rem">
+                    <tr>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                    </tr>
+                </table>
+            </div>
 
 
 
@@ -122,17 +104,20 @@
                 <img src="{{url_for('static', filename='imagens/cachorro2.jpeg')}}">
                 <table border="1rem">
                     <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
                     </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Meg</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Labrador</td>
-                    </tr>
+                </table>
+            </div>
 
+
+
+<div class="animal">
+                <img src="{{url_for('static', filename='imagens/cachorro2.jpeg')}}">
+                <table border="1rem">
+                    <tr>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                    </tr>
+                    
 
                 </table>
             </div>
@@ -143,39 +128,8 @@
                 <img src="{{url_for('static', filename='imagens/cachorro2.jpeg')}}">
                 <table border="1rem">
                     <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
                     </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Meg</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Labrador</td>
-                    </tr>
-
-
-                </table>
-            </div>
-
-
-
-<div class="animal">
-                <img src="{{url_for('static', filename='imagens/cachorro2.jpeg')}}">
-                <table border="1rem">
-                    <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Meg</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Labrador</td>
-                    </tr>
-
-
                 </table>
             </div>
        
@@ -183,20 +137,46 @@
                 <img src="{{url_for('static', filename='imagens/cachorro2.jpeg')}}">
                 <table border="1rem">
                     <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Meg</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Labrador</td>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
                     </tr>
 
 
                 </table>
-            </div>         
+            </div> 
+            
+            
+<div class="animal">
+                <img src="{{url_for('static', filename='imagens/cachorro2.jpeg')}}">
+                <table border="1rem">
+                    <tr>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                    </tr>
+
+
+                </table>
+            </div>
+
+<div class="animal">
+                <img src="{{url_for('static', filename='imagens/cachorro2.jpeg')}}">
+                <table border="1rem">
+                    <tr>
+                        <td class="saber_mais colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                    </tr>
+
+
+                </table>
+            </div>
+
+<div class="animal">
+                <img src="{{url_for('static', filename='imagens/cachorro2.jpeg')}}">
+                <table border="1rem">
+                    <tr>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                    </tr>
+
+
+                </table>
+            </div>
 
 
 
@@ -219,18 +199,8 @@
                 <img src="{{url_for('static', filename='imagens/cachorro3.jpeg')}}">
                 <table border="1rem">
                     <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
                     </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Bob</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Boxer</td>
-                    </tr>
-
-
                 </table>
             </div>
 
@@ -240,18 +210,8 @@
                 <img src="{{url_for('static', filename='imagens/cachorro3.jpeg')}}">
                 <table border="1rem">
                     <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                        <td class="saber_mais colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
                     </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Bob</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Boxer</td>
-                    </tr>
-
-
                 </table>
             </div>
 
@@ -261,18 +221,8 @@
                 <img src="{{url_for('static', filename='imagens/cachorro3.jpeg')}}">
                 <table border="1rem">
                     <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Bob</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Boxer</td>
-                    </tr>
-
-
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                    </tr>                    
                 </table>
             </div>
        
@@ -280,18 +230,8 @@
                 <img src="{{url_for('static', filename='imagens/cachorro3.jpeg')}}">
                 <table border="1rem">
                     <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                        <td class="saber_mais" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
                     </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Bob</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Boxer</td>
-                    </tr>
-
-
                 </table>
             </div>            
 
@@ -302,5 +242,6 @@
         
         </div>
     </section>
-</body>
-</html>
+
+{% endblock %}
+

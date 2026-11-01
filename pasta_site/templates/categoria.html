@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-</head>
-<body style="width:100%; height:100vh; background-color: azure; display:flex; flex-direction:column; justify-content: center; align-items: center;">
+{% extends 'base.html' %}
 
-    
+{% block title %} Categoria {% endblock %}
+
+{% block content %}
      <img style="height:30%; width:40%" src="static/imagens/01-logo.png" alt="Logo MatchPet">
 <div class="categoria_div">
 
@@ -23,6 +17,6 @@
 
 <a class="criar_conta" href="{{url_for('cachorro')}}">Voltar para a homepage</a>
 
-</body>
-</html>
+{% endblock %}
+
 
