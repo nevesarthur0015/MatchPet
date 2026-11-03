@@ -16,38 +16,46 @@ import uuid
 
 import csv
 
-from pasta_site.utils import ler_csv
-#função pra ler csv passando o arquivo como parâmetro
+from pasta_site.utils import ler_csv, upload_img, dicionario_img
+
+
+    
 
 
 @app.route('/')
 def homepage_cachorro():
+#função pra ler csv passando o arquivo como parâmetro
     dados_animais = ler_csv("data/pets.csv")
+    pet_imagens = dicionario_img(dados_animais)
     dados_animais = [animal for animal in dados_animais if animal["tipo"] == "cachorro"]
     # Percorre a lista de animais e verifica o tipo
     # de cada um, adicionando à nova lista apenas os cachorros.
+    
+    
      
-    return render_template('homepages/homepage_cachorro.html',dados_animais = dados_animais) 
+    return render_template('homepages/homepage_cachorro.html',dados_animais = dados_animais, pet_imagens = pet_imagens) 
     #Agora so adicionar o for no html 
 
 @app.route('/gato')
-def homepage_gato(): 
+def homepage_gato():
     dados_animais = ler_csv("data/pets.csv")
+    pet_imagens = dicionario_img(dados_animais)
     dados_animais = [animal for animal in dados_animais if animal["tipo"] == "gato"]
     # Percorre a lista de animais e verifica o tipo
     # de cada um, adicionando à nova lista apenas os gatos.
          
-    return render_template('homepages/homepage_gato.html',dados_animais = dados_animais) 
+    return render_template('homepages/homepage_gato.html',dados_animais = dados_animais, pet_imagens = pet_imagens) 
     #Agora so adicionar o for no html
 
 @app.route('/outros')
-def homepage_outros(): 
+def homepage_outros():
     dados_animais = ler_csv("data/pets.csv")
+    pet_imagens = dicionario_img(dados_animais)
     dados_animais = [animal for animal in dados_animais if animal["tipo"] == "outros"]
     # Percorre a lista de animais e verifica o tipo
     # de cada um, adicionando à nova lista apenas os ""outros"".
              
-    return render_template('homepages/homepage_outros.html',dados_animais = dados_animais) 
+    return render_template('homepages/homepage_outros.html',dados_animais = dados_animais, pet_imagens = pet_imagens) 
     #Agora so adicionar o for no html
 
 @app.route('/telalogin', methods=['GET','POST'])
@@ -125,17 +133,7 @@ def adicionar():
     # Recupera o parâmetro da URL (GET) e preenche o campo oculto do formulário.           
     if form_animal.validate_on_submit():
        
-       #Se o form passar na validação ele puxa os dados do form pra mandar pro CSV
-       nome_pet = form_animal.nome.data
-       idade_pet = form_animal.idade.data
-       sexo_pet = form_animal.sexo.data
-       raca_pet =form_animal.raca.data
-       foto_principal_pet = form_animal.foto_principal.data
-       foto_extra_pet = form_animal.fotos_extras.data
-       mensagem_pet =form_animal.mensagem.data
-       pet_id =str(uuid.uuid4())
-       #Usa o UUID que gera um ID único para cada pet 
-       user_id = current_user.id
+        #Se o form passar na validação ele puxa os dados do form pra mandar pro CSV
        tipo = form_animal.tipo.data 
        tipos_validos = ["cachorro","gato","outros"] 
 
@@ -145,14 +143,22 @@ def adicionar():
        #Validação: se o usuário informar um tipo inválido pela URL ou alterar o campo oculto pelo DevTools,
        #O sistema bloqueia o cadastro, exibe uma mensagem de erro e redireciona o usuário para a página inicial.
        
-
+       nome_pet = form_animal.nome.data
+       idade_pet = form_animal.idade.data
+       sexo_pet = form_animal.sexo.data
+       raca_pet = form_animal.raca.data
+       pet_id = str(uuid.uuid4()) #Usa o UUID que gera um ID único para cada pet 
+       imagens_pet = upload_img(pet_id)
+       mensagem_pet = form_animal.mensagem.data
+       user_id = current_user.id
+       
        with open("data/pets.csv","a",newline = "",encoding="utf-8") as arquivo:
            escritor = csv.writer(arquivo)
-           escritor.writerow([nome_pet,idade_pet,sexo_pet,raca_pet,mensagem_pet,pet_id,user_id,tipo, foto_principal_pet, foto_extra_pet]) 
+           escritor.writerow([nome_pet,idade_pet,sexo_pet,raca_pet,mensagem_pet,pet_id,user_id,tipo, imagens_pet]) 
            # abre o arquivo CSV, e grava os dados enviados no form (Menos imagem por enquanto)
 
-
-       return redirect (url_for('homepage_cachorro'))
+       return redirect(url_for('homepage_cachorro'))
+    flash ("categoria de animal inválida","danger" )
     return render_template('adicionar1.html', form=form_animal)
 
 @app.route('/detalhes')

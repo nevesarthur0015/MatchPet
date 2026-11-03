@@ -10,7 +10,7 @@
     <div class="criar_conta_1">
 
 
-        <form class="form_adicionar" method="POST">
+        <form class="form_adicionar" method="POST" enctype="multipart/form-data">
     <!--Esse 'form.csrf_token' serve para proteger o site contra ataques de falsificação de formulário-->
     {{form.csrf_token}}
     {{form.tipo}}
