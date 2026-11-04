@@ -161,9 +161,12 @@ def adicionar():
     flash ("categoria de animal inválida","danger" )
     return render_template('adicionar1.html', form=form_animal)
 
-@app.route('/detalhes')
-def detalhes():
-    return render_template('detalhes.html')
+@app.route('/detalhes/<id_pet>')
+def detalhes(id_pet):
+    dados_animais = ler_csv("data/pets.csv")
+    dados_animal = [animal for animal in dados_animais if animal["id_pet"] == id_pet]
+    pet_imagens = dicionario_img(dados_animal)
+    return render_template('detalhes.html', dados_animal = dados_animal, pet_imagens = pet_imagens)
 
 @app.route('/sobre')
 def sobre():

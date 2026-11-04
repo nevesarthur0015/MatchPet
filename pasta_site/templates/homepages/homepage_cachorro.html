@@ -44,9 +44,10 @@
 
                     {% endfor %}
 
+
                     <table border="1rem">
                         <tr>
-                            <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                            <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes', id_pet = animal['id_pet'])}}">Clique para saber mais</a></td>
                         </tr>
                         <tr>
                             <td scope="row">Nome:</td>
@@ -86,7 +87,7 @@
 
                     <table border="1rem">
                         <tr>
-                            <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                            <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes', id_pet = animal['id_pet'])}}">Clique para saber mais</a></td>
                         </tr>
                         <tr>
                             <td scope="row">Nome:</td>
@@ -127,7 +128,7 @@
 
                     <table border="1rem">
                         <tr>
-                            <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
+                            <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes', id_pet = animal['id_pet'])}}">Clique para saber mais</a></td>
                         </tr>
                         <tr>
                             <td scope="row">Nome:</td>
