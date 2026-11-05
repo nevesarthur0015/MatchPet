@@ -11,7 +11,7 @@
 {% include 'navbar/navbar.html' %}
 
 <section class="pag_animal1">
-     
+
     <div class="pag_animal1_1">
         <img src="{{url_for('static' , filename='imagens/cachorro1.jpeg')}}">
     </div>
@@ -21,24 +21,32 @@
         <table border="1rem">
                     <tr>
                         <td scope="row">Nome:</td>
-                        <td>Toby</td>
+                        <td>
+                            {{ dados_animal[0]['nome'] }}
+                        </td>
                     </tr>
                     <tr>
                         <td scope="row">Raça:</td>
-                        <td>Golden Retriever</td>
+                        <td>
+                            {{ dados_animal[0]['raca'] }}
+                        </td>
                     </tr>
                     
                     <tr>
                         <td scope="row">Sexo:</td>
-                        <td>Masculino</td>
+                        <td>
+                            {{ dados_animal[0]['sexo']}}
+                        </td>
                     </tr>
 
                     <tr>
                         <td scope="row">Idade:</td>
-                        <td>3 meses</td>
+                        <td>
+                            {{ dados_animal[0]['idade']}}
+                        </td>
                     </tr>
                     <tr>
-                        <td scope="row">Contato:</td>
+                        <td scope="row">Contato:</td> <!-- TODO -->
                         <td>(83) 9812-68396</td>
                     </tr>
                 </table>
@@ -62,18 +70,21 @@
 
     <div class="pag_animal2">
         <h2>Mensagem do doador</h2>
-        <p>Procuro um lar cheio de amor para o Toby, esse filhote adorável de Golden Retriever de apenas três meses e meio que aparece na foto com sua coleirinha azul no jardim. Ele é uma criatura extremamente doce, brincalhona e curiosa, que adora explorar a grama, correr atrás de borboletas e ficar bem pertinho da gente o tempo todo. O Léo já tomou a primeira dose da vacina polivalente, está devidamente vermifugado e microchipado, precisando apenas dar continuidade ao esquema de vacinação e ser castrado quando atingir a idade adequada de seis meses. Por conta de uma mudança repentina de país a trabalho, infelizmente não terei como mantê-lo comigo, e meu único objetivo é garantir que ele vá para uma família responsável, com tempo, espaço e paciência para acompanhar seu crescimento e treinamento com muito carinho. Ele será entregue com sua carteirinha de vacinação em dia, microchip em seu nome, coleira, mantinha e um saco da ração que já está acostumado a comer. Se você tem o espaço necessário e deseja abrir o coração para esse menino dourado, entre em contato por mensagem privada para conversarmos e garantirmos que este seja o lar definitivo e feliz que ele tanto merece.</p>
+        <p>
+            {{ dados_animal[0]['mensagem'] }}
+        </p>
     </div>
 
 <section class="pag_animal3">
     <h2>Fotos extras</h2>
     <div class="pag_animal3_1">
-        <img src="{{url_for('static' , filename='imagens/cachorro1_1.jpeg')}}">
-        <img src="{{url_for('static' , filename='imagens/cachorro1_2.jpeg')}}">
-        <img src="{{url_for('static' , filename='imagens/cachorro1_3.jpeg')}}">
+        {%for pet in pet_imagens %}
 
-        <img src="{{url_for('static' , filename='imagens/cachorro1_3.jpeg')}}">
+            {% for imagem in pet.fotos_extras %}
+                <img src="{{ url_for('static', filename=imagem) }}">
+            {% endfor %}
 
+        {% endfor %}
     </div>
 </section>
 
