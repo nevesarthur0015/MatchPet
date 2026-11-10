@@ -17,268 +17,138 @@
 </head>
 
 <body style="width:100%; display: flex; flex-direction: column; align-items: center;">
-    
     {% include 'navbar/navbar.html' %}
 
     {% block body %}
 
+
     <div class="titulo_main">
-        <h1>Cachorros para adoção</h1>
+        <h1>
+            {% block titulo_h1%}
+                Cachorros para adoção
+            {% endblock %}
+        </h1>
     </div>
     <section class="section_animal">
         <h2>Filhotes (até 1 ano)</h2>
         <div class="div_cachorro_filhote">
-            <div class="animal">
-                <img src="{{url_for('static', filename='imagens/cachorro1.jpeg')}}">
-                <table border="1rem">
-                    <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Toby</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Golden Retriever</td>
-                    </tr>
-                </table>
-            </div>
+            
+            {% for animal in dados_animais if animal["idade"] | int <= 1 %}
+
+                <div class="animal">
+
+                   {% for pet in pet_imagens %}
+                        {% if animal['id_pet'] == pet.id%}
+                            <img src="{{ url_for('static', filename= pet.foto_principal) }}">
+                        {% endif %}
+
+                    {% endfor %}
 
 
-        <div class="animal">
-            <img src="{{url_for('static', filename='imagens/cachorro1.jpeg')}}">
-            <table border="1rem">
-                <tr>
-                    <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                </tr>
-                <tr>
-                    <td scope="row">Nome:</td>
-                    <td>Toby</td>
-                </tr>
-                <tr>
-                    <td scope="row">Raça:</td>
-                    <td>Golden Retriever</td>
-                </tr>
-            </table>
-        </div>
+                    <table border="1rem">
+                        <tr>
+                            <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes', id_pet = animal['id_pet'])}}">Clique para saber mais</a></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Nome:</td>
+                            <td>
+                                {{ animal['nome']}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Raça:</td>
+                            <td>
+                                {{ animal['raca']}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-        <div class="animal">
-                <img src="{{url_for('static', filename='imagens/cachorro1.jpeg')}}">
-                <table border="1rem">
-                    <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Toby</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Golden Retriever</td>
-                    </tr>
+            {% endfor %}
 
-
-                </table>
-            </div>
-
-<div class="animal">
-                <img src="{{url_for('static', filename='imagens/cachorro1.jpeg')}}">
-                <table border="1rem">
-                    <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Toby</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Golden Retriever</td>
-                    </tr>
-
-
-                </table>
-            </div>
         </div>
     </section>
+
 
     <section style="margin-top:10vh;" class="section_animal">
         <h2>Adultos (de 1 até 7 anos)</h2>
+
         <div class="div_cachorro_filhote">
-        <div class="animal">
-            <img src="{{url_for('static', filename='imagens/cachorro2.jpeg')}}">
-            <table border="1rem">
-                <tr>
-                    <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                </tr>
-                <tr>
-                    <td scope="row">Nome:</td>
-                    <td>Meg</td>
-                </tr>
-                <tr>
-                    <td scope="row">Raça:</td>
-                    <td>Labrador</td>
-                </tr>
-                </table>
-            </div>
 
-<div class="animal">
-    <img src="{{url_for('static', filename='imagens/cachorro2.jpeg')}}">
-                <table border="1rem">
-                    <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Meg</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Labrador</td>
-                    </tr>
-                </table>
-</div>
+            {% for animal in dados_animais if animal["idade"] | int < 7 and animal["idade"] | int > 1%}
 
+                <div class="animal">
+                    {% for pet in pet_imagens %}
+                        {% if animal['id_pet'] == pet.id%}
+                            <img src="{{ url_for('static', filename= pet.foto_principal) }}">
+                        {% endif %}
 
+                    {% endfor %}
 
-<div class="animal">
-                <img src="{{url_for('static', filename='imagens/cachorro2.jpeg')}}">
-                <table border="1rem">
-                    <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Meg</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Labrador</td>
-                    </tr>
+                    <table border="1rem">
+                        <tr>
+                            <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes', id_pet = animal['id_pet'])}}">Clique para saber mais</a></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Nome:</td>
+                            <td>
+                                {{ animal['nome']}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Raça:</td>
+                            <td>
+                                {{ animal['raca']}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
+            {% endfor %}
 
-                </table>
-            </div>
-       
-<div class="animal">
-                <img src="{{url_for('static', filename='imagens/cachorro2.jpeg')}}">
-                <table border="1rem">
-                    <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Meg</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Labrador</td>
-                    </tr>
-
-
-                </table>
-            </div>         
-
-
-
-       
-
-        
         </div>
     </section>
-
-
 
 
 
 <section style="margin-top:10vh;" class="section_animal">
         <h2>Idosos (mais de 7 anos)</h2>
         <div class="div_cachorro_filhote">
+
+            {% for animal in dados_animais if animal["idade"] | int >= 7 %}
             
-            
-<div class="animal">
-                <img src="{{url_for('static', filename='imagens/cachorro3.jpeg')}}">
-                <table border="1rem">
-                    <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Bob</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Boxer</td>
-                    </tr>
+              <div class="animal">
 
+                    {% for pet in pet_imagens %}
+                        {% if animal['id_pet'] == pet.id%}
+                            <img src="{{ url_for('static', filename= pet.foto_principal) }}">
+                        {% endif %}
+                        
+                    {% endfor %}
 
-                </table>
-            </div>
+                    <table border="1rem">
+                        <tr>
+                            <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes', id_pet = animal['id_pet'])}}">Clique para saber mais</a></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Nome:</td>
+                            <td>
+                                {{ animal['nome']}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Raça:</td>
+                            <td>
+                                {{ animal['raca']}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
+            {% endfor %}
 
-
-<div class="animal">
-                <img src="{{url_for('static', filename='imagens/cachorro3.jpeg')}}">
-                <table border="1rem">
-                    <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Bob</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Boxer</td>
-                    </tr>
-
-
-                </table>
-            </div>
-
-
-
-<div class="animal">
-                <img src="{{url_for('static', filename='imagens/cachorro3.jpeg')}}">
-                <table border="1rem">
-                    <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Bob</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Boxer</td>
-                    </tr>
-
-
-                </table>
-            </div>
-       
-<div class="animal">
-                <img src="{{url_for('static', filename='imagens/cachorro3.jpeg')}}">
-                <table border="1rem">
-                    <tr>
-                        <td class="detalhes_animal" colspan="2"><a href="{{url_for('detalhes')}}">Clique para saber mais</a></td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Nome:</td>
-                        <td>Bob</td>
-                    </tr>
-                    <tr>
-                        <td scope="row">Raça:</td>
-                        <td>Boxer</td>
-                    </tr>
-
-
-                </table>
-            </div>            
         </div>
     </section>
-
     {% endblock %}
 </body>
 </html>
