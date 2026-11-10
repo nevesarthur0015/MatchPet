@@ -1,7 +1,9 @@
 #Criar os formularios do site
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, FileField, HiddenField
+from flask_wtf.file import FileField, MultipleFileField
+from wtforms import StringField, PasswordField, SubmitField, HiddenField, MultipleFileField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
+
 
 from pasta_site.models import Usuario
 
@@ -24,7 +26,7 @@ class FormAnimal(FlaskForm):
     idade = StringField('Idade:', validators=[DataRequired()])
     raca = StringField('Raça / Tipo de animal:', validators=[DataRequired()])
     foto_principal = FileField('Foto Principal:', validators=[DataRequired()])
-    fotos_extras = FileField('Fotos extras:')
+    fotos_extras = MultipleFileField('Fotos extras:')
     mensagem = StringField('Mensagem do doador:' , default='Procuro um novo lar para este animal')
     sexo = StringField('Sexo:' , validators=[DataRequired()])
     botao_confirmacao= SubmitField('Enviar')
