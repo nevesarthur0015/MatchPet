@@ -18,9 +18,7 @@ import csv
 
 from pasta_site.utils import ler_csv, upload_img, dicionario_img
 
-
-    
-
+from .email_service import mandar_email
 
 @app.route('/')
 def homepage_cachorro():
@@ -165,6 +163,12 @@ def adicionar():
 def detalhes(id_pet):
     dados_animais = ler_csv("data/pets.csv")
     dados_animal = [animal for animal in dados_animais if animal["id_pet"] == id_pet]
+    #percorre o csv e cria uma lista com os dados do pet recebido após achar
+    if not dados_animal:
+        return "Animal não encontrado", 404
+    #se não tiver esse animal cadastrado da esse erro
+
+    
     pet_imagens = dicionario_img(dados_animal)
     return render_template('detalhes.html', dados_animal = dados_animal, pet_imagens = pet_imagens)
 
@@ -182,4 +186,46 @@ def perfil(usuario = None):
 
    return  f"<p>HTML {current_user.username}</p>"
 #Agora é so criar o HTML e passar o template e a var de usuário
+
+
+@app.route("/disparar_email", methods=["POST"])
+@login_required
+def disparar_email():
+    # Lógica para disparar o email
+
+    id_pet = request.form.get("id_pet")
+    #puxa o id pet do campo hidden do form do botão
+    if not id_pet:
+        flash("ID do pet não encontrado","danger")
+        return redirect(url_for("homepage_cachorro"))
+
+    for animal in ler_csv("data/pets.csv"):
+        #percorre o CSV procurando o animal com o id_pet correspondente
+        if animal["id_pet"] == id_pet:
+
+            doador = Usuario.query.get(int(animal["user_id"]))
+        # pega o id do doador e procura ele no banco de dados
+
+            if doador is None or not doador.email:
+                flash("Email ou DOADOR não encontrado")
+                return redirect(url_for("homepage_cachorro"))
+            
+            email_doador = doador.email
+        #se achar o animal, puxa o ID e o email do doador do pet no banco de dados  
+          
+            email_interessado = current_user.email
+        #email interessado = email do usuário logado
+            nome_animal = animal["nome"] 
+
+            try:
+                mandar_email(email_doador, email_interessado, nome_animal)
+                #chama func de mandar email
+            except Exception:
+                flash("Não foi possível enviar o e-mail", "danger")
+            else:
+                flash("E-mail enviado com sucesso!", "success")
+            return redirect(url_for("homepage_cachorro"))    
+    else:
+        flash("Animal não encontrado", "danger")
+        return redirect(url_for("homepage_cachorro"))  
     

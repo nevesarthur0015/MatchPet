@@ -1,8 +1,10 @@
-from flask_mail import Message,Mail
-mail = Mail()
+from . import mail
+#importa a instância de disparo de email
+
+from flask_mail import Message
 
 
-def disparar_email(email_doador,email_interessado,nome_animal):
+def mandar_email(email_doador,email_interessado,nome_animal):
     #msg cria a mensgem que será enviada para o doador
     msg = Message(
         subject = f"interesse de adoção do pet {nome_animal}",
