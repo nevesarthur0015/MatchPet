@@ -21,6 +21,14 @@
 
     {% block body %}
 
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+    {% for categoria, mensagem in mensagens %}
+        <p class="{{ categoria }}">{{ mensagem }}</p>
+    {% endfor %}
+{% endwith %}
+<!-- Recupera as mensagens flash do Flask,
+     percorre cada uma e as exibe no HTML com sua categoria-->
+
 
     <div class="titulo_main">
         <h1>

@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{url_for('static' , filename='css/style.css')}}">
 </head>
-<body class="pag_animal">
+<body class="pag_animal"> 
     
 {% include 'navbar/navbar.html' %}
 
@@ -55,9 +55,11 @@
     
 </section>
     
-<button class="email" onclick="document.getElementById('login_popup').showModal()">Enviar e-mail para doador</button>
+
 
 {% if not current_user.is_authenticated %}
+<button class="email" onclick="document.getElementById('login_popup').showModal()">Enviar e-mail para doador</button>
+
     <dialog id="login_popup">
         <h2>Para enviar mensagens, é necessário <a href="{{ url_for('telalogin')}}">realizar login</a>.</h2>
 
@@ -65,6 +67,16 @@
 
     </dialog>
 
+    {% else %}
+    <form action="{{ url_for('disparar_email') }}" method="POST">
+    <input type="hidden" name="id_pet" value="{{dados_animal[0]['id_pet'] }}">
+    <!--acessa os dados do animal encontrado e dentro da lista puxa o id do pet,
+        depois manda através de um campo invisível -->
+    
+    <button class="email" type="submit">
+        Enviar e-mail para doador
+    </button>
+</form>
 {% endif%}
 
 
