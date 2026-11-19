@@ -10,9 +10,12 @@
     <div class="criar_conta_1">
 
 
-        <form class="form_adicionar" method="POST">
+    <form class="form_adicionar" method="POST" enctype="multipart/form-data">
     <!--Esse 'form.csrf_token' serve para proteger o site contra ataques de falsificação de formulário-->
     {{form.csrf_token}}
+    {{form.tipo}}
+    <!--O form tipo adicionou o campo oculto no form mandando o tipo do animal [gato/cachorro/outros]-->
+    
     <h2 style="font-size: 1.5rem;">Página de adicionar animal</h2>
     <div class="criar_conta_div_form">
     {{form.nome.label(class='label_criar_conta')}}
@@ -41,7 +44,7 @@
 
     <div class="criar_conta_div_form">
     {{form.fotos_extras.label(class='label_criar_conta')}}
-    {{form.fotos_extras(class='input_criar_conta')}}
+    {{form.fotos_extras(multiple=True, class='input_criar_conta')}}
     </div>
 
         <div class="criar_conta_div_form">

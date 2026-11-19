@@ -1,6 +1,6 @@
 import os
 
-from flask import render_template,url_for,redirect,flash
+from flask import render_template,url_for,redirect,flash,request
 
 from pasta_site import app, database, bcrypt
 
@@ -12,18 +12,49 @@ from pasta_site.models import Usuario, Foto
 
 from werkzeug.utils import secure_filename
 
+import uuid
+
+import csv
+
+from pasta_site.utils import ler_csv, upload_img, dicionario_img
+
+from .email_service import mandar_email
 
 @app.route('/')
 def homepage_cachorro():
-    return render_template('homepages/homepage_cachorro.html')
+#função pra ler csv passando o arquivo como parâmetro
+    dados_animais = ler_csv("data/pets.csv")
+    pet_imagens = dicionario_img(dados_animais)
+    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "cachorro"]
+    # Percorre a lista de animais e verifica o tipo
+    # de cada um, adicionando à nova lista apenas os cachorros.
+    
+    
+     
+    return render_template('homepages/homepage_cachorro.html',dados_animais = dados_animais, pet_imagens = pet_imagens) 
+    #Agora so adicionar o for no html 
 
 @app.route('/gato')
-def homepage_gato(): 
-    return render_template('homepages/homepage_gato.html')
+def homepage_gato():
+    dados_animais = ler_csv("data/pets.csv")
+    pet_imagens = dicionario_img(dados_animais)
+    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "gato"]
+    # Percorre a lista de animais e verifica o tipo
+    # de cada um, adicionando à nova lista apenas os gatos.
+         
+    return render_template('homepages/homepage_gato.html',dados_animais = dados_animais, pet_imagens = pet_imagens) 
+    #Agora so adicionar o for no html
 
 @app.route('/outros')
-def homepage_outros(): 
-    return render_template('homepages/homepage_outros.html')
+def homepage_outros():
+    dados_animais = ler_csv("data/pets.csv")
+    pet_imagens = dicionario_img(dados_animais)
+    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "outros"]
+    # Percorre a lista de animais e verifica o tipo
+    # de cada um, adicionando à nova lista apenas os ""outros"".
+             
+    return render_template('homepages/homepage_outros.html',dados_animais = dados_animais, pet_imagens = pet_imagens) 
+    #Agora so adicionar o for no html
 
 @app.route('/telalogin', methods=['GET','POST'])
 def telalogin():
@@ -95,13 +126,51 @@ def logout():
 @login_required
 def adicionar():
     form_animal= FormAnimal()
+    if request.method == "GET":
+               form_animal.tipo.data = request.args.get("tipo")
+    # Recupera o parâmetro da URL (GET) e preenche o campo oculto do formulário.           
     if form_animal.validate_on_submit():
-        return redirect (url_for('homepage_cachorro'))
+       
+        #Se o form passar na validação ele puxa os dados do form pra mandar pro CSV
+       tipo = form_animal.tipo.data 
+       tipos_validos = ["cachorro","gato","outros"] 
+
+       if tipo not in tipos_validos:
+           flash ("categoria de animal inválida","danger" )
+           return redirect(url_for("homepage_cachorro"))
+       #Validação: se o usuário informar um tipo inválido pela URL ou alterar o campo oculto pelo DevTools,
+       #O sistema bloqueia o cadastro, exibe uma mensagem de erro e redireciona o usuário para a página inicial.
+       
+       nome_pet = form_animal.nome.data
+       idade_pet = form_animal.idade.data
+       sexo_pet = form_animal.sexo.data
+       raca_pet = form_animal.raca.data
+       pet_id = str(uuid.uuid4()) #Usa o UUID que gera um ID único para cada pet 
+       imagens_pet = upload_img(pet_id)
+       mensagem_pet = form_animal.mensagem.data
+       user_id = current_user.id
+       
+       with open("data/pets.csv","a",newline = "",encoding="utf-8") as arquivo:
+           escritor = csv.writer(arquivo)
+           escritor.writerow([nome_pet,idade_pet,sexo_pet,raca_pet,mensagem_pet,pet_id,user_id,tipo, imagens_pet]) 
+           # abre o arquivo CSV, e grava os dados enviados no form (Menos imagem por enquanto)
+
+       return redirect(url_for('homepage_cachorro'))
+    flash ("categoria de animal inválida","danger" )
     return render_template('adicionar1.html', form=form_animal)
 
-@app.route('/detalhes')
-def detalhes():
-    return render_template('detalhes.html')
+@app.route('/detalhes/<id_pet>')
+def detalhes(id_pet):
+    dados_animais = ler_csv("data/pets.csv")
+    dados_animal = [animal for animal in dados_animais if animal["id_pet"] == id_pet]
+    #percorre o csv e cria uma lista com os dados do pet recebido após achar
+    if not dados_animal:
+        return "Animal não encontrado", 404
+    #se não tiver esse animal cadastrado da esse erro
+
+    
+    pet_imagens = dicionario_img(dados_animal)
+    return render_template('detalhes.html', dados_animal = dados_animal, pet_imagens = pet_imagens)
 
 @app.route('/sobre')
 def sobre():
@@ -112,9 +181,51 @@ def sobre():
 @app.route('/perfil/<usuario>')
 @login_required
 def perfil(usuario = None):
-   usuario = current_user
-# O usuário será sempre aquele autenticado na requisição atual.
+    usuario = current_user
+    # O usuário será sempre aquele autenticado na requisição atual.
 
-   return  f"<p>HTML {current_user.username}</p>"
+    return  f"<p>HTML {current_user.username}</p>"
 #Agora é so criar o HTML e passar o template e a var de usuário
+
+
+@app.route("/disparar_email", methods=["POST"])
+@login_required
+def disparar_email():
+    # Lógica para disparar o email
+
+    id_pet = request.form.get("id_pet")
+    #puxa o id pet do campo hidden do form do botão
+    if not id_pet:
+        flash("ID do pet não encontrado","danger")
+        return redirect(url_for("homepage_cachorro"))
+
+    for animal in ler_csv("data/pets.csv"):
+        #percorre o CSV procurando o animal com o id_pet correspondente
+        if animal["id_pet"] == id_pet:
+
+            doador = Usuario.query.get(int(animal["user_id"]))
+        # pega o id do doador e procura ele no banco de dados
+
+            if doador is None or not doador.email:
+                flash("Email ou DOADOR não encontrado")
+                return redirect(url_for("homepage_cachorro"))
+            
+            email_doador = doador.email
+        #se achar o animal, puxa o ID e o email do doador do pet no banco de dados  
+          
+            email_interessado = current_user.email
+        #email interessado = email do usuário logado
+            nome_animal = animal["nome"] 
+
+            try:
+                mandar_email(email_doador, email_interessado, nome_animal)
+                #chama func de mandar email
+            except Exception:
+                flash("Não foi possível enviar o e-mail", "danger")
+            else:
+                flash("E-mail enviado com sucesso!", "success")
+            return redirect(url_for("homepage_cachorro"))    
+    else:
+        flash("Animal não encontrado", "danger")
+        return redirect(url_for("homepage_cachorro"))  
     

@@ -14,9 +14,11 @@
 
     <h1 style="font-family: Arial, Helvetica, sans-serif; font-size: 1.3rem;">Selecione a categoria de animal que você deseja adicionar</h1>
 <ul class="categoria_lista">
-    <li><a class="adicionar_select" href="{{url_for('adicionar')}}">Cachorro</a></li>
-    <li><a class="adicionar_select" href="{{url_for('adicionar')}}">Gato</a></li>
-    <li><a class="adicionar_select" href="{{url_for('adicionar')}}">Outros</a></li>
+    <li><a class="adicionar_select" href="{{url_for('adicionar', tipo = 'cachorro')}}">Cachorro</a></li>
+    <li><a class="adicionar_select" href="{{url_for('adicionar', tipo = 'gato')}}">Gato</a></li>
+    <li><a class="adicionar_select" href="{{url_for('adicionar', tipo = 'outros')}}">Outros</a></li>
+    
+    <!--Adicionei o tipo como parâmetro na url pra eu filtrar a leitura de dados e mostrar na página principal-->
 </ul>
 </div>
 
