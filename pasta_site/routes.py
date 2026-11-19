@@ -156,7 +156,7 @@ def adicionar():
            # abre o arquivo CSV, e grava os dados enviados no form (Menos imagem por enquanto)
 
        return redirect(url_for('homepage_cachorro'))
-    flash ("categoria de animal inválida","danger" )
+    
     return render_template('adicionar1.html', form=form_animal)
 
 @app.route('/detalhes/<id_pet>')
@@ -220,8 +220,9 @@ def disparar_email():
             try:
                 mandar_email(email_doador, email_interessado, nome_animal)
                 #chama func de mandar email
-            except Exception:
-                flash("Não foi possível enviar o e-mail", "danger")
+                print("ENVIO SMTP CONCLUIDO")
+            except Exception as erro:
+                flash(f"Não foi possível enviar o e-mail{erro}", "danger")
             else:
                 flash("E-mail enviado com sucesso!", "success")
             return redirect(url_for("homepage_cachorro"))    
