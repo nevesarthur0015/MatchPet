@@ -16,7 +16,7 @@ O site conta também com uma área para o registro de diferentes eventos de ado�
 de cuidadores e apaixonados em animais.
 
 ## Funcionalidades (Casos de Uso)
-<img width="602" height="1682" alt="Casos_de_Uso drawio" src="https://github.com/user-attachments/assets/5c01c579-e2ac-46f9-903f-a53d40ca9f0b" />
+<img width="1797" height="812" alt="Casos_de_uso_final(1) drawio(1)" src="https://github.com/user-attachments/assets/643df6a5-9a06-4dba-bb99-45f2c7da49a4" />
 
 ## Arquitetura do projeto
 TODO
