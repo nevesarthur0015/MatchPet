@@ -177,9 +177,9 @@ def sobre():
 @app.route('/perfil/<usuario>')
 @login_required
 def perfil(usuario = None):
-   usuario = current_user
-# O usuário será sempre aquele autenticado na requisição atual.
+    usuario = current_user
+    # O usuário será sempre aquele autenticado na requisição atual.
 
-   return  f"<p>HTML {current_user.username}</p>"
-#Agora é so criar o HTML e passar o template e a var de usuário
+    return  f"<p>HTML {current_user.username}</p>"
+    #Agora é so criar o HTML e passar o template e a var de usuário
     

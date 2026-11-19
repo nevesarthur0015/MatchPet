@@ -13,7 +13,11 @@
 <section class="pag_animal1">
 
     <div class="pag_animal1_1">
-        <img src="{{url_for('static' , filename='imagens/cachorro1.jpeg')}}">
+        {%for pet in pet_imagens %}
+
+                <img src="{{ url_for('static', filename=pet.foto_principal) }}">
+
+        {% endfor %}
     </div>
 
 
