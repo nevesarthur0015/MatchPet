@@ -30,7 +30,6 @@ mail.init_app(app)
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-app.config['SECRET_KEY'] = '21072006'
 app.config['UPLOAD_FOLDER'] = 'pasta_site/static/'
 
 
@@ -48,7 +47,7 @@ database= SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 
-app.config['SECRET_KEY'] = 'chave_secreta'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')  
 
 #Esse login_manager.login_view indica para qual página o usuário deve ser direcionado caso tente acessar um página protegida sem estar logado, isto é, o que tem @login_required. Nesse caso, será direcionado para a rota com a função "homepage"
 login_manager.login_view = 'telalogin'
