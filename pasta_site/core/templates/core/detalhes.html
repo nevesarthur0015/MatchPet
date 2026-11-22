@@ -65,14 +65,14 @@
 <button class="email" onclick="document.getElementById('login_popup').showModal()">Enviar e-mail para doador</button>
 
     <dialog id="login_popup">
-        <h2>Para enviar mensagens, é necessário <a href="{{ url_for('telalogin')}}">realizar login</a>.</h2>
+        <h2>Para enviar mensagens, é necessário <a href="{{ url_for('auth.telalogin')}}">realizar login</a>.</h2>
 
         <button onclick="document.getElementById('login_popup').close()">Fechar</button>
 
     </dialog>
 
     {% else %}
-    <form action="{{ url_for('disparar_email') }}" method="POST">
+    <form action="{{ url_for('send_email.disparar_email') }}" method="POST">
     <input type="hidden" name="id_pet" value="{{dados_animal[0]['id_pet'] }}">
     <!--acessa os dados do animal encontrado e dentro da lista puxa o id do pet,
         depois manda através de um campo invisível -->
@@ -103,11 +103,5 @@
         {% endfor %}
     </div>
 </section>
-
-
-
-    
-
-
 </body>
 </html>

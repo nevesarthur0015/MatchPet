@@ -1,4 +1,4 @@
-from . import mail
+from .. import mail
 #importa a instância de disparo de email
 
 from flask_mail import Message

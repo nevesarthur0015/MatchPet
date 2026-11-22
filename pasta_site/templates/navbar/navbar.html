@@ -1,20 +1,20 @@
     <nav class="navbar_main">
-    <a href="{{url_for('homepage_cachorro')}}"><img style= "max-width: 400px" src="{{url_for('static', filename='imagens/01-logo.png')}}"></a>
+    <a href="{{url_for('core.homepage_cachorro')}}"><img style= "max-width: 400px" src="{{url_for('static', filename='imagens/01-logo.png')}}"></a>
 
     <ul style="display:flex;flex-direction: row; width: 30%;justify-content: space-around; align-items: center; background-color: aliceblue; height: 80%; border-radius: 1rem;">
-        <li><a href="{{url_for('homepage_cachorro')}}">Cachorros</a></li>
-        <li><a href="{{url_for('homepage_gato')}}">Gatos</a></li>
-        <li><a href="{{url_for('homepage_outros')}}">Outros</a></li>
+        <li><a href="{{url_for('core.homepage_cachorro')}}">Cachorros</a></li>
+        <li><a href="{{url_for('core.homepage_gato')}}">Gatos</a></li>
+        <li><a href="{{url_for('core.homepage_outros')}}">Outros</a></li>
     </ul>
 
         <ul style="display:flex;flex-direction: row; width: 20%;justify-content: space-around; align-items: center; height: 80%;">
 
         {% if current_user.is_authenticated %} <!-- Verifica se o usuário está autenticado -->
-            <li><a href="{{url_for('categoria')}}">Adicionar animal</a></li>
-            <li><a href="{{url_for('logout')}}">Deslogar</a></li>
+            <li><a href="{{url_for('create_pet.categoria')}}">Adicionar animal</a></li>
+            <li><a href="{{url_for('auth.logout')}}">Deslogar</a></li>
             
         {% else %} 
-            <li><a href="{{url_for('telalogin')}}">Login</a></li>
+            <li><a href="{{url_for('auth.telalogin')}}">Login</a></li>
         {% endif %}
         
     </ul>

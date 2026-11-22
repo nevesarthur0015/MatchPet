@@ -1,4 +1,4 @@
-from pasta_site import database, login_manager
+from .extensions import database, login_manager
 from flask_login import UserMixin
 
 
