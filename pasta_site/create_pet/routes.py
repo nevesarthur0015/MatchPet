@@ -47,5 +47,5 @@ def adicionar():
            # abre o arquivo CSV, e grava os dados enviados no form (Menos imagem por enquanto)
 
        return redirect(url_for('core.homepage_cachorro'))
-    flash ("categoria de animal inválida","danger" )
+
     return render_template('adicionar1.html', form=form_animal)

@@ -17,7 +17,7 @@ def upload_img(pet_id):
     caminho_principal = os.path.join(pasta_pet, f"foto_principal{extensao}") # path da foto principal, usado pela linha logo abaixo
     foto_principal.save(caminho_principal) # Salva a imagem no caminho criado
     
-    fotos_extras = form_animal.fotos_extras.data
+    fotos_extras = form_animal.fotos_extras.data or []
     
     for i, foto in enumerate(fotos_extras, start=1):
         nome_secure = secure_filename(foto.filename)

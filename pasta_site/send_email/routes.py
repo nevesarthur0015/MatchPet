@@ -38,8 +38,9 @@ def disparar_email():
             try:
                 mandar_email(email_doador, email_interessado, nome_animal)
                 #chama func de mandar email
-            except Exception:
-                flash("Não foi possível enviar o e-mail", "danger")
+                print("ENVIO SMTP CONCLUIDO")
+            except Exception as erro:
+                flash(f"Não foi possível enviar o e-mail{erro}", "danger")
             else:
                 flash("E-mail enviado com sucesso!", "success")
             return redirect(url_for("core.homepage_cachorro"))    
