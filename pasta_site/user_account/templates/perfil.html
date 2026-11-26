@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>{{usuario.username}}</title>
+</head>
+<body>
+    <h1>Olá, {{usuario.username}}!</h1>
+
+<section class="section_animal">
+    <div class="div_cachorro_filhote">
+
+        {% for animal in pets_doados %}
+                <div class="animal">
+
+                   {% for pet in pet_imagens %}
+                        {% if animal['id_pet'] == pet.id%}
+                            <img src="{{ url_for('static', filename= pet.foto_principal) }}">
+                        {% endif %}
+
+                    {% endfor %}
+
+
+                    <table border="1rem">
+                        <tr>
+                            <td class="detalhes_animal" colspan="2"><a href="{{url_for('core.detalhes', id_pet = animal['id_pet'])}}">Clique para saber mais</a></td>
+                        </tr>
+                        <tr>
+                            <td class="detalhes_animal" colspan="1"><a href="{{url_for('user_account.editar', id_pet = animal['id_pet'])}}">Editar doação</a></td>
+                        </tr>
+                          <tr>
+                            <td class="detalhes_animal" colspan="1"><a href="{{url_for('user_account.inativar', id_pet = animal['id_pet'])}}">Inativar doação</a></td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Nome:</td>
+                            <td>
+                                {{ animal['nome']}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">Raça:</td>
+                            <td>
+                                {{ animal['raca']}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+        {% endfor %}
+    </div>
+</section>
+
+</body>
+</html>

@@ -4,7 +4,6 @@ from .forms import FormCriarConta, FormLogin
 from flask import redirect, url_for, render_template, flash, request
 from flask_login import login_user, login_required, logout_user
 from ..extensions import bcrypt, database
-from ..utils import validate_email
 
 
 

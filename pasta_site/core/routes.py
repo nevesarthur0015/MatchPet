@@ -6,8 +6,8 @@ from ..utils import ler_csv, dicionario_img
 def homepage_cachorro():
 #função pra ler csv passando o arquivo como parâmetro
     dados_animais = ler_csv("data/pets.csv")
-    pet_imagens = dicionario_img(dados_animais)
     dados_animais = [animal for animal in dados_animais if animal["tipo"] == "cachorro"]
+    pet_imagens = dicionario_img(dados_animais)
     # Percorre a lista de animais e verifica o tipo
     # de cada um, adicionando à nova lista apenas os cachorros.
     
@@ -19,8 +19,8 @@ def homepage_cachorro():
 @core_bp.route('/gato')
 def homepage_gato():
     dados_animais = ler_csv("data/pets.csv")
-    pet_imagens = dicionario_img(dados_animais)
     dados_animais = [animal for animal in dados_animais if animal["tipo"] == "gato"]
+    pet_imagens = dicionario_img(dados_animais)
     # Percorre a lista de animais e verifica o tipo
     # de cada um, adicionando à nova lista apenas os gatos.
          
@@ -30,8 +30,8 @@ def homepage_gato():
 @core_bp.route('/outros')
 def homepage_outros():
     dados_animais = ler_csv("data/pets.csv")
-    pet_imagens = dicionario_img(dados_animais)
     dados_animais = [animal for animal in dados_animais if animal["tipo"] == "outros"]
+    pet_imagens = dicionario_img(dados_animais)
     # Percorre a lista de animais e verifica o tipo
     # de cada um, adicionando à nova lista apenas os ""outros"".
              
