@@ -23,7 +23,7 @@
                                 <img src="{{ url_for('static', filename= pet.foto_principal) }}">
                             {% endif %}
 
-                        {% endfor %}
+                    {% endfor %}
 
 
                         <table border="1rem">
@@ -34,7 +34,25 @@
                                 <td class="detalhes_animal" colspan="1"><a href="{{url_for('user_account.editar', id_pet = animal['id_pet'])}}">Editar doação</a></td>
                             </tr>
                             <tr>
-                                <td class="detalhes_animal" colspan="1"><a href="{{url_for('user_account.inativar', id_pet = animal['id_pet'])}}">Inativar doação</a></td>
+                                <td class="detalhes_animal" colspan="1">
+
+                                    <button type="button" onclick="document.getElementById('modal_inativar_{{ animal['id_pet'] }}').showModal()">
+                                    Inativar doação
+                                    </button>
+
+                                    <dialog id="modal_inativar_{{ animal['id_pet'] }}">
+                                    <h2>Tem certeza que deseja inativar a doação de {{ animal['nome'] }}?</h2>
+
+                                    <button type="button" onclick="document.getElementById('modal_inativar_{{ animal['id_pet'] }}').close()">
+                                        Cancelar
+                                    </button>
+
+                                    <form method="POST" action="{{ url_for('user_account.inativar', id_pet=animal['id_pet']) }}">
+                                        <button type="submit">Inativar</button>
+                                    </form>
+                                    </dialog>
+
+                                </td>
                             </tr>
                             <tr>
                                 <td scope="row">Nome:</td>

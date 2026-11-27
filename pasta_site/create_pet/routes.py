@@ -40,10 +40,11 @@ def adicionar():
        imagens_pet = upload_img(pet_id)
        mensagem_pet = form_animal.mensagem.data
        user_id = current_user.id
+       ativo = 1
        
        with open("data/pets.csv","a",newline = "",encoding="utf-8") as arquivo:
            escritor = csv.writer(arquivo)
-           escritor.writerow([nome_pet,idade_pet,sexo_pet,raca_pet,mensagem_pet,pet_id,user_id,tipo, imagens_pet]) 
+           escritor.writerow([nome_pet,idade_pet,sexo_pet,raca_pet,mensagem_pet,pet_id,user_id,tipo, imagens_pet, ativo]) 
            # abre o arquivo CSV, e grava os dados enviados no form (Menos imagem por enquanto)
 
        return redirect(url_for('core.homepage_cachorro'))

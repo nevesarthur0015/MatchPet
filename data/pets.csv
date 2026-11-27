@@ -1,13 +1,15 @@
-nome,idade,sexo,raca,mensagem,id_pet,user_id,tipo,imagens
-cacaucuauaa,2,macho,cachorro,Procuro um novo lar para este animal,dc90dcab-558b-4217-8a35-689a76928fbf,6,cachorro,imagens/dc90dcab-558b-4217-8a35-689a76928fbf
-teste2,4,femea,cachorro,Procuro um novo lar para este animal,ed741572-21bc-42d1-ace2-000081380d37,6,cachorro,imagens/ed741572-21bc-42d1-ace2-000081380d37
-auauauaaaa,1,macho,cachorro,Procuro um novo lar para este animal,bbe7f969-4bed-448e-b192-e0b9202ff3a0,6,cachorro,imagens/bbe7f969-4bed-448e-b192-e0b9202ff3a0
-teste02,8,macho,cachorro,Procuro um novo lar para este animal,1f94fdd6-bb09-4152-96a1-00426f237710,6,cachorro,imagens/1f94fdd6-bb09-4152-96a1-00426f237710
-testeo44,3,macho,cachorro,Procuro um novo lar para este animal,2a277836-c34a-4f3e-b89c-64f0546e9547,6,cachorro,imagens/2a277836-c34a-4f3e-b89c-64f0546e9547
-teste444,5,macho,cachorro,Procuro um novo lar para este animal,8cf8d8e5-2f0f-44bf-8057-9d31a5d0ca57,6,cachorro,imagens/8cf8d8e5-2f0f-44bf-8057-9d31a5d0ca57
-ubebebebe,4,macho,cachorro,Procuro um novo lar para este animal,7525e8bc-4bfe-4420-9bb9-3eda23c185a2,7,cachorro,imagens/7525e8bc-4bfe-4420-9bb9-3eda23c185a2
-miauu,2,macho,gato,Procuro um novo lar para este animal,f813e2a4-112a-4650-9e24-dacb0a4c6468,6,gato,imagens/f813e2a4-112a-4650-9e24-dacb0a4c6468
-abuble,4,macho,cachorro,Procuro um novo lar para este animal,0d4cf36e-bfd1-42e9-8dc5-2d960b55ef90,6,cachorro,imagens/0d4cf36e-bfd1-42e9-8dc5-2d960b55ef90
-Corinthians,7,macho,cachorro,Procuro um novo lar para este animal,cdc72add-e27a-47dc-b1c8-dd765d3ffd3a,9,cachorro,imagens/cdc72add-e27a-47dc-b1c8-dd765d3ffd3a
-gatoauau,4,macho,cachorro,Procuro u,ddfca3b5-41ba-41b8-bc4e-9f0d4c196bfd,10,cachorro,imagens/ddfca3b5-41ba-41b8-bc4e-9f0d4c196bfd
-teste4444,2,macho,cachorro,Pro,09e75d79-f0b9-4245-bd2d-35338a2ef982,10,cachorro,imagens/09e75d79-f0b9-4245-bd2d-35338a2ef982
+nome,idade,sexo,raca,mensagem,id_pet,user_id,tipo,imagens,ativo
+cacaucuauaa,2,macho,cachorro,Procuro um novo lar para este animal,dc90dcab-558b-4217-8a35-689a76928fbf,6,cachorro,imagens/dc90dcab-558b-4217-8a35-689a76928fbf,1
+teste2,4,femea,cachorro,Procuro um novo lar para este animal,ed741572-21bc-42d1-ace2-000081380d37,6,cachorro,imagens/ed741572-21bc-42d1-ace2-000081380d37,1
+auauauaaaa,1,macho,cachorro,Procuro um novo lar para este animal,bbe7f969-4bed-448e-b192-e0b9202ff3a0,6,cachorro,imagens/bbe7f969-4bed-448e-b192-e0b9202ff3a0,1
+teste02,8,macho,cachorro,Procuro um novo lar para este animal,1f94fdd6-bb09-4152-96a1-00426f237710,6,cachorro,imagens/1f94fdd6-bb09-4152-96a1-00426f237710,1
+testeo44,3,macho,cachorro,Procuro um novo lar para este animal,2a277836-c34a-4f3e-b89c-64f0546e9547,6,cachorro,imagens/2a277836-c34a-4f3e-b89c-64f0546e9547,1
+teste444,5,macho,cachorro,Procuro um novo lar para este animal,8cf8d8e5-2f0f-44bf-8057-9d31a5d0ca57,6,cachorro,imagens/8cf8d8e5-2f0f-44bf-8057-9d31a5d0ca57,1
+ubebebebe,4,macho,cachorro,Procuro um novo lar para este animal,7525e8bc-4bfe-4420-9bb9-3eda23c185a2,7,cachorro,imagens/7525e8bc-4bfe-4420-9bb9-3eda23c185a2,1
+miauu,2,macho,gato,Procuro um novo lar para este animal,f813e2a4-112a-4650-9e24-dacb0a4c6468,6,gato,imagens/f813e2a4-112a-4650-9e24-dacb0a4c6468,1
+abuble,4,macho,cachorro,Procuro um novo lar para este animal,0d4cf36e-bfd1-42e9-8dc5-2d960b55ef90,6,cachorro,imagens/0d4cf36e-bfd1-42e9-8dc5-2d960b55ef90,1
+Corinthians,7,macho,cachorro,Procuro um novo lar para este animal,cdc72add-e27a-47dc-b1c8-dd765d3ffd3a,9,cachorro,imagens/cdc72add-e27a-47dc-b1c8-dd765d3ffd3a,1
+teste4444,2,macho,cachorro,Pro,09e75d79-f0b9-4245-bd2d-35338a2ef982,10,cachorro,imagens/09e75d79-f0b9-4245-bd2d-35338a2ef982,0
+gatoauau,4,macho,cachorro,Procuro u,ddfca3b5-41ba-41b8-bc4e-9f0d4c196bfd,10,cachorro,imagens/ddfca3b5-41ba-41b8-bc4e-9f0d4c196bfd,0
+corinthians,5,macho,cachorro,P,4ae6761a-83c2-42ad-96ab-7289149532c9,10,cachorro,imagens/4ae6761a-83c2-42ad-96ab-7289149532c9,0
+tiririca,8,fêmea,cachorro,Procuro um novo,995987dc-c58d-49a6-b165-28b25d5ca7d8,10,cachorro,imagens/995987dc-c58d-49a6-b165-28b25d5ca7d8,1

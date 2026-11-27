@@ -1,12 +1,13 @@
 from . import core_bp
 from flask import render_template
 from ..utils import ler_csv, dicionario_img
+from flask_login import current_user
 
 @core_bp.route('/')
 def homepage_cachorro():
 #função pra ler csv passando o arquivo como parâmetro
     dados_animais = ler_csv("data/pets.csv")
-    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "cachorro"]
+    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "cachorro" and animal["ativo"] == '1']
     pet_imagens = dicionario_img(dados_animais)
     # Percorre a lista de animais e verifica o tipo
     # de cada um, adicionando à nova lista apenas os cachorros.
@@ -19,7 +20,7 @@ def homepage_cachorro():
 @core_bp.route('/gato')
 def homepage_gato():
     dados_animais = ler_csv("data/pets.csv")
-    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "gato"]
+    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "gato" and animal["ativo"] == '1']
     pet_imagens = dicionario_img(dados_animais)
     # Percorre a lista de animais e verifica o tipo
     # de cada um, adicionando à nova lista apenas os gatos.
@@ -30,7 +31,7 @@ def homepage_gato():
 @core_bp.route('/outros')
 def homepage_outros():
     dados_animais = ler_csv("data/pets.csv")
-    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "outros"]
+    dados_animais = [animal for animal in dados_animais if animal["tipo"] == "outros" and animal["ativo"] == '1'] 
     pet_imagens = dicionario_img(dados_animais)
     # Percorre a lista de animais e verifica o tipo
     # de cada um, adicionando à nova lista apenas os ""outros"".
@@ -49,7 +50,7 @@ def detalhes(id_pet):
 
     
     pet_imagens = dicionario_img(dados_animal)
-    return render_template('core/detalhes.html', dados_animal = dados_animal, pet_imagens = pet_imagens)
+    return render_template('core/detalhes.html', dados_animal = dados_animal, pet_imagens = pet_imagens, contato = current_user.email)
 
 @core_bp.route('/sobre')
 def sobre():

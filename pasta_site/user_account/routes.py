@@ -13,7 +13,7 @@ from flask import render_template, redirect, url_for, request
 def perfil(usuario = None):
     usuario = current_user # O usuário será sempre aquele autenticado na requisição atual.
     pets_doados = ler_csv("data/pets.csv")
-    pets_doados = [animal for animal in pets_doados if animal['user_id'] == str(usuario.id)] # Não reconhece se o id for INT!!
+    pets_doados = [animal for animal in pets_doados if animal['user_id'] == str(usuario.id) and animal['ativo'] == '1'] # Não reconhece se o id for INT!!
     
     pet_imagens = dicionario_img(pets_doados)
 
@@ -51,11 +51,15 @@ def editar(id_pet):
     return render_template("editar.html", pet=pet, form=form_animal)
 
 
-@user_account_bp.route('/inativar/<id_pet>')
+@user_account_bp.route('/inativar/<id_pet>', methods=['GET', 'POST'])
 @login_required
 def inativar(id_pet):
-
-    #TODO: Função de inativar
+    pets = ler_csv("data/pets.csv")
+    pet = [pet for pet in pets if pet['id_pet'] == id_pet]
+    if pet == []:
+        return "Animal não encontrado!"
     
+    pet[0]['ativo'] = 0
+    salvar_alteracao(pets)
     return redirect(url_for('user_account.perfil'))
     

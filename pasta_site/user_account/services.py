@@ -3,7 +3,7 @@ import csv
 from pathlib import Path
 
 CSV_PATH = Path("data/pets.csv")
-fieldnames = ['nome', 'idade', 'sexo', 'raca', 'mensagem', 'id_pet', 'user_id', 'tipo', 'imagens']
+fieldnames = ['nome', 'idade', 'sexo', 'raca', 'mensagem', 'id_pet', 'user_id', 'tipo', 'imagens', 'ativo']
 
 def salvar_alteracao(pets):
     with CSV_PATH.open(mode="w", encoding="utf-8", newline="") as f:
