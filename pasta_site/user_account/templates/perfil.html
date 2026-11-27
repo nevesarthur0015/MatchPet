@@ -12,43 +12,47 @@
 <section class="section_animal">
     <div class="div_cachorro_filhote">
 
-        {% for animal in pets_doados %}
-                <div class="animal">
+        {% if pets_doados == [] %}
+            <p> Você ainda não doou nenhum pet! </p>
+        {% else %}
+            {% for animal in pets_doados %}
+                    <div class="animal">
 
-                   {% for pet in pet_imagens %}
-                        {% if animal['id_pet'] == pet.id%}
-                            <img src="{{ url_for('static', filename= pet.foto_principal) }}">
-                        {% endif %}
+                    {% for pet in pet_imagens %}
+                            {% if animal['id_pet'] == pet.id%}
+                                <img src="{{ url_for('static', filename= pet.foto_principal) }}">
+                            {% endif %}
 
-                    {% endfor %}
+                        {% endfor %}
 
 
-                    <table border="1rem">
-                        <tr>
-                            <td class="detalhes_animal" colspan="2"><a href="{{url_for('core.detalhes', id_pet = animal['id_pet'])}}">Clique para saber mais</a></td>
-                        </tr>
-                        <tr>
-                            <td class="detalhes_animal" colspan="1"><a href="{{url_for('user_account.editar', id_pet = animal['id_pet'])}}">Editar doação</a></td>
-                        </tr>
-                          <tr>
-                            <td class="detalhes_animal" colspan="1"><a href="{{url_for('user_account.inativar', id_pet = animal['id_pet'])}}">Inativar doação</a></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">Nome:</td>
-                            <td>
-                                {{ animal['nome']}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">Raça:</td>
-                            <td>
-                                {{ animal['raca']}}
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                        <table border="1rem">
+                            <tr>
+                                <td class="detalhes_animal" colspan="2"><a href="{{url_for('core.detalhes', id_pet = animal['id_pet'])}}">Clique para saber mais</a></td>
+                            </tr>
+                            <tr>
+                                <td class="detalhes_animal" colspan="1"><a href="{{url_for('user_account.editar', id_pet = animal['id_pet'])}}">Editar doação</a></td>
+                            </tr>
+                            <tr>
+                                <td class="detalhes_animal" colspan="1"><a href="{{url_for('user_account.inativar', id_pet = animal['id_pet'])}}">Inativar doação</a></td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Nome:</td>
+                                <td>
+                                    {{ animal['nome']}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Raça:</td>
+                                <td>
+                                    {{ animal['raca']}}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
 
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
     </div>
 </section>
 

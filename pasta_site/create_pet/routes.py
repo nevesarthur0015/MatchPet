@@ -1,6 +1,6 @@
-from .forms import FormAnimal
+from ..forms import FormAnimal
 from . import create_pet_bp
-from .services import upload_img
+from ..utils import upload_img
 from flask import request, redirect, flash, url_for, render_template
 from flask_login import login_required, current_user
 import csv
