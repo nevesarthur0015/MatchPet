@@ -2,6 +2,7 @@ from . import core_bp
 from flask import render_template
 from ..utils import ler_csv, dicionario_img
 from flask_login import current_user
+from ..models import Usuario
 
 @core_bp.route('/')
 def homepage_cachorro():
@@ -48,9 +49,9 @@ def detalhes(id_pet):
         return "Animal não encontrado", 404
     #se não tiver esse animal cadastrado da esse erro
 
-    
+    contato = Usuario.query.filter_by(id = dados_animal[0]["user_id"]).first()
     pet_imagens = dicionario_img(dados_animal)
-    return render_template('core/detalhes.html', dados_animal = dados_animal, pet_imagens = pet_imagens, contato = current_user.email)
+    return render_template('core/detalhes.html', dados_animal = dados_animal, pet_imagens = pet_imagens, contato = contato.email)
 
 @core_bp.route('/sobre')
 def sobre():
